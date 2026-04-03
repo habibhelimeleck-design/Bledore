@@ -44,7 +44,7 @@ export default async function ProducteurDashboardPage() {
             <p className="text-sand-500 text-sm mt-0.5">{producerAccount.company_name}</p>
           )}
         </div>
-        <Link href="/producteur/missions/nouvelle" className="btn btn-em">
+        <Link href="/recruteur/missions/nouvelle" className="btn btn-em">
           <Plus size={16} /> Nouvelle mission
         </Link>
       </div>
@@ -52,10 +52,10 @@ export default async function ProducteurDashboardPage() {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
-          { label: "Missions",    value: stats.total,     icon: FileText, color: "text-ink",       href: "/producteur/missions" },
-          { label: "Publiées",    value: stats.published, icon: Eye,      color: "text-em-600",    href: "/producteur/missions" },
-          { label: "Brouillons",  value: stats.draft,     icon: FileText, color: "text-gold-dark", href: "/producteur/missions" },
-          { label: "Candidatures",value: stats.candidates,icon: Users,    color: "text-sand-600",  href: "/producteur/candidatures" },
+          { label: "Missions",    value: stats.total,     icon: FileText, color: "text-ink",       href: "/recruteur/missions" },
+          { label: "Publiées",    value: stats.published, icon: Eye,      color: "text-em-600",    href: "/recruteur/missions" },
+          { label: "Brouillons",  value: stats.draft,     icon: FileText, color: "text-gold-dark", href: "/recruteur/missions" },
+          { label: "Candidatures",value: stats.candidates,icon: Users,    color: "text-sand-600",  href: "/recruteur/candidatures" },
         ].map(({ label, value, icon: Icon, color, href }) => (
           <Link key={label} href={href} className="card p-5 hover:border-em-200 transition-colors">
             <div className="flex items-center justify-between mb-3">
@@ -72,7 +72,7 @@ export default async function ProducteurDashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-ink">Mes missions</h2>
-            <Link href="/producteur/missions" className="text-sm text-em-600 hover:text-em-400 flex items-center gap-1 transition-colors">
+            <Link href="/recruteur/missions" className="text-sm text-em-600 hover:text-em-400 flex items-center gap-1 transition-colors">
               Tout voir <ArrowRight size={14} />
             </Link>
           </div>
@@ -81,12 +81,12 @@ export default async function ProducteurDashboardPage() {
               <div className="card p-8 text-center">
                 <FileText size={24} className="text-sand-300 mx-auto mb-3" />
                 <p className="font-semibold text-ink text-sm mb-1">Aucune mission</p>
-                <Link href="/producteur/missions/nouvelle" className="btn btn-em btn-sm mt-2">
+                <Link href="/recruteur/missions/nouvelle" className="btn btn-em btn-sm mt-2">
                   <Plus size={14} /> Créer une mission
                 </Link>
               </div>
             ) : allMissions.map((m: any) => (
-              <Link key={m.id} href={`/producteur/missions/${m.id}`}
+              <Link key={m.id} href={`/recruteur/missions/${m.id}`}
                 className="card p-4 flex items-center gap-3 hover:border-em-200">
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-ink text-sm truncate">{m.title}</p>
@@ -109,7 +109,7 @@ export default async function ProducteurDashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-ink">Candidatures récentes</h2>
-            <Link href="/producteur/candidatures" className="text-sm text-em-600 hover:text-em-400 flex items-center gap-1 transition-colors">
+            <Link href="/recruteur/candidatures" className="text-sm text-em-600 hover:text-em-400 flex items-center gap-1 transition-colors">
               Tout voir <ArrowRight size={14} />
             </Link>
           </div>

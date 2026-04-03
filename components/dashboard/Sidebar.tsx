@@ -13,30 +13,30 @@ import type { Profile } from "@/lib/types/database";
 
 interface SidebarProps {
   profile: Profile;
-  role: "face" | "producer";
+  role: "talent" | "producer";
 }
 
-const FACE_LINKS = [
-  { href: "/face",             label: "Tableau de bord",  icon: LayoutDashboard },
-  { href: "/face/profil",      label: "Mon profil",       icon: User },
-  { href: "/face/galerie",     label: "Ma galerie",       icon: Images },
-  { href: "/face/missions",    label: "Missions",         icon: Search },
-  { href: "/face/candidatures",label: "Mes candidatures", icon: Briefcase },
+const TALENT_LINKS = [
+  { href: "/talent",             label: "Tableau de bord",  icon: LayoutDashboard },
+  { href: "/talent/profil",      label: "Mon profil",       icon: User },
+  { href: "/talent/galerie",     label: "Ma galerie",       icon: Images },
+  { href: "/talent/missions",    label: "Missions",         icon: Search },
+  { href: "/talent/candidatures",label: "Mes candidatures", icon: Briefcase },
 ];
 
-const PRODUCER_LINKS = [
-  { href: "/producteur",              label: "Tableau de bord",  icon: LayoutDashboard },
-  { href: "/producteur/missions",     label: "Mes missions",     icon: FileText },
-  { href: "/producteur/talents",      label: "Catalogue talents",icon: Users },
-  { href: "/producteur/candidatures", label: "Candidatures",     icon: Briefcase },
-  { href: "/producteur/compte",       label: "Mon compte",       icon: Settings },
+const RECRUTEUR_LINKS = [
+  { href: "/recruteur",              label: "Tableau de bord",  icon: LayoutDashboard },
+  { href: "/recruteur/missions",     label: "Mes missions",     icon: FileText },
+  { href: "/recruteur/talents",      label: "Catalogue talents",icon: Users },
+  { href: "/recruteur/candidatures", label: "Candidatures",     icon: Briefcase },
+  { href: "/recruteur/compte",       label: "Mon compte",       icon: Settings },
 ];
 
 export default function Sidebar({ profile, role }: SidebarProps) {
   const pathname = usePathname();
   const router   = useRouter();
   const supabase = createClient();
-  const links    = role === "face" ? FACE_LINKS : PRODUCER_LINKS;
+  const links    = role === "talent" ? TALENT_LINKS : RECRUTEUR_LINKS;
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -69,7 +69,7 @@ export default function Sidebar({ profile, role }: SidebarProps) {
         </div>
         <div className="min-w-0 flex-1">
           <p className="font-semibold text-ink text-sm truncate">{profile.full_name}</p>
-          <p className="text-em-600 text-xs capitalize">{role === "face" ? "Talent" : "Recruteur"}</p>
+          <p className="text-em-600 text-xs capitalize">{role === "talent" ? "Talent" : "Recruteur"}</p>
         </div>
         <ChevronRight size={14} className="text-sand-300 flex-shrink-0" />
       </div>
@@ -77,7 +77,8 @@ export default function Sidebar({ profile, role }: SidebarProps) {
       {/* Navigation */}
       <nav className="flex-1 flex flex-col gap-0.5">
         {links.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href || (href !== `/${role}` && pathname.startsWith(href));
+          const roleBase = role === "talent" ? "/talent" : "/recruteur";
+          const active = pathname === href || (href !== roleBase && pathname.startsWith(href));
           return (
             <Link
               key={href}

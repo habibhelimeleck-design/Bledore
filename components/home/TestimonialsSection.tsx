@@ -7,9 +7,9 @@ import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/
 const TESTIMONIALS = [
   {
     name: "Amina K.",
-    role: "Actrice, Cotonou",
+    role: "Actrice, Libreville",
     quote:
-      "Avant WeAct, je cherchais des castings partout — réseaux sociaux, bouche-à-oreille... Maintenant, les opportunités viennent directement à moi. J'ai réalisé 8 missions en 3 mois !",
+      "Avant E.Talent, je cherchais des castings partout — réseaux sociaux, bouche-à-oreille... Maintenant, les opportunités viennent directement à moi. J'ai réalisé 8 missions en 3 mois !",
     rating: 5,
     image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
     missions: "18 missions",
@@ -18,14 +18,14 @@ const TESTIMONIALS = [
     name: "Marc D.",
     role: "Directeur artistique, Studio Lumière",
     quote:
-      "On perd un temps fou à chercher des talents en dehors de WeAct. Ici, je filtre exactement par ce que je cherche, je contacte directement. Notre dernier clip a été casté en moins de 48h.",
+      "On perd un temps fou à chercher des talents en dehors de E.Talent. Ici, je filtre exactement par ce que je cherche, je contacte directement. Notre dernier clip a été casté en moins de 48h.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
     missions: "23 castings publiés",
   },
   {
     name: "Sèlomè H.",
-    role: "Artiste vocale, Abomey-Calavi",
+    role: "Artiste vocale, Franceville",
     quote:
       "La plateforme est simple, belle et vraiment utile. Le paiement sécurisé, c'est ce qui m'a convaincue. Je n'ai jamais eu de problème.",
     rating: 5,

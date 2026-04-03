@@ -12,7 +12,7 @@ export default function InscriptionPage() {
       <div className="flex flex-col gap-4">
         {/* Talent */}
         <Link
-          href="/inscription/face"
+          href="/inscription/talent"
           className="group flex items-center gap-4 p-5 rounded-2xl border-2 border-[var(--border)] hover:border-em-400 hover:bg-em-50 transition-all duration-250"
         >
           <div className="w-12 h-12 rounded-xl bg-em-100 flex items-center justify-center flex-shrink-0 group-hover:bg-em-200 transition-colors">
@@ -29,7 +29,7 @@ export default function InscriptionPage() {
 
         {/* Recruteur */}
         <Link
-          href="/inscription/producteur"
+          href="/inscription/recruteur"
           className="group flex items-center gap-4 p-5 rounded-2xl border-2 border-[var(--border)] hover:border-gold-DEFAULT hover:bg-[rgba(212,168,67,0.05)] transition-all duration-250"
         >
           <div className="w-12 h-12 rounded-xl bg-gold-muted flex items-center justify-center flex-shrink-0 group-hover:bg-[rgba(212,168,67,0.2)] transition-colors">

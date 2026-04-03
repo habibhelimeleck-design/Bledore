@@ -41,7 +41,7 @@ export default function ConnexionPage() {
       .eq("id", user.id)
       .single();
 
-    router.push(profile?.role === "producer" ? "/producteur" : "/face");
+    router.push(profile?.role === "producer" ? "/recruteur" : "/talent");
     router.refresh();
   }
 

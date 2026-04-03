@@ -78,7 +78,7 @@ export default function InscriptionProducteurPage() {
       return;
     }
 
-    router.push("/producteur");
+    router.push("/recruteur");
     router.refresh();
   }
 

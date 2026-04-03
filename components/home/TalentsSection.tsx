@@ -14,9 +14,9 @@ const CATEGORIES: Category[] = ["Tous", "Acteurs", "Mannequins", "Voix", "Danseu
 const TALENTS = [
   {
     id: 1,
-    name: "Amina Kossou",
+    name: "Laeticia Mboumba",
     role: "Actrice & Présentatrice",
-    city: "Cotonou",
+    city: "Libreville",
     rating: 4.9,
     missions: 18,
     verified: true,
@@ -26,9 +26,9 @@ const TALENTS = [
   },
   {
     id: 2,
-    name: "Kofi Adjovi",
+    name: "Jean-Pierre Ndong",
     role: "Mannequin & Influenceur",
-    city: "Porto-Novo",
+    city: "Port-Gentil",
     rating: 4.8,
     missions: 24,
     verified: true,
@@ -38,9 +38,9 @@ const TALENTS = [
   },
   {
     id: 3,
-    name: "Fatoumata Diallo",
+    name: "Christelle Ondo",
     role: "Comédienne",
-    city: "Cotonou",
+    city: "Libreville",
     rating: 4.7,
     missions: 12,
     verified: true,
@@ -50,9 +50,9 @@ const TALENTS = [
   },
   {
     id: 4,
-    name: "Sèlomè Houngbé",
+    name: "Sylvie Nzamba",
     role: "Artiste vocale",
-    city: "Abomey-Calavi",
+    city: "Franceville",
     rating: 5.0,
     missions: 9,
     verified: true,
@@ -62,9 +62,9 @@ const TALENTS = [
   },
   {
     id: 5,
-    name: "Edouard Ahounou",
+    name: "Rodrigue Obiang",
     role: "Mannequin Editorial",
-    city: "Cotonou",
+    city: "Libreville",
     rating: 4.9,
     missions: 31,
     verified: true,
@@ -74,9 +74,9 @@ const TALENTS = [
   },
   {
     id: 6,
-    name: "Ines Tossou",
+    name: "Patience Moussavou",
     role: "Danseuse Afrobeat",
-    city: "Cotonou",
+    city: "Libreville",
     rating: 4.8,
     missions: 15,
     verified: false,
@@ -190,7 +190,7 @@ export default function TalentsSection() {
           <Link
             href="/talents"
             className="btn-outline shrink-0 text-sm py-2.5"
-            aria-label="Voir tous les talents WeAct"
+            aria-label="Voir tous les talents E.Talent"
           >
             Voir tous les talents
             <ArrowRight size={15} aria-hidden="true" />

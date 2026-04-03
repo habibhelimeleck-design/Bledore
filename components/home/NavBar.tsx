@@ -38,14 +38,14 @@ export default function NavBar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-9 h-9 rounded-xl bg-forest-700 flex items-center justify-center shadow-medium group-hover:bg-forest-600 transition-colors duration-250">
-              <span className="text-white font-heading font-800 text-sm tracking-tight">W</span>
+              <span className="text-white font-heading font-800 text-sm tracking-tight">E</span>
             </div>
             <span
               className={`font-heading font-700 text-xl tracking-tight transition-colors duration-250 ${
                 scrolled ? "text-forest-700" : "text-forest-700"
               }`}
             >
-              WeAct
+              E.<span className="text-forest-500">Talent</span>
             </span>
           </Link>
 

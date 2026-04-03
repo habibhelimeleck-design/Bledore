@@ -6,16 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Star, Users, Briefcase, TrendingUp } from "lucide-react";
 
-type Mode = "face" | "producteur";
+type Mode = "talent" | "recruteur";
 
 const HERO_CONTENT = {
-  face: {
+  talent: {
     eyebrow: "Pour les talents",
     title:   "Votre talent mérite\nd'être vu.",
     subtitle:
-      "Créez votre profil, partagez vos compétences et soyez découvert par des producteurs, marques et créateurs à travers le Bénin et l'Afrique.",
+      "Créez votre profil, partagez vos compétences et soyez découvert par des recruteurs, marques et créateurs à travers le Gabon et l'Afrique centrale.",
     cta:     "Créer mon profil gratuit",
-    ctaHref: "/inscription/face",
+    ctaHref: "/inscription/talent",
     secondary:      "Voir les missions",
     secondaryHref:  "#missions",
     image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=85",
@@ -23,24 +23,24 @@ const HERO_CONTENT = {
     stat2: { value: "340+",   label: "Missions réalisées" },
     stat3: { value: "4.9",    label: "Note moyenne", icon: Star },
   },
-  producteur: {
-    eyebrow: "Pour les producteurs",
+  recruteur: {
+    eyebrow: "Pour les recruteurs",
     title:   "Trouvez le talent\nparfait, vite.",
     subtitle:
-      "Accédez à un catalogue de talents vérifiés. Publiez vos castings, gérez les candidatures et collaborez avec les meilleures faces du Bénin.",
+      "Accédez à un catalogue de talents vérifiés. Publiez vos castings, gérez les candidatures et collaborez avec les meilleurs talents du Gabon.",
     cta:     "Publier un casting",
-    ctaHref: "/inscription/producteur",
+    ctaHref: "/inscription/recruteur",
     secondary:      "Voir les talents",
     secondaryHref:  "#talents",
     image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=85",
-    stat1: { value: "120+",  label: "Producteurs actifs" },
+    stat1: { value: "120+",  label: "Recruteurs actifs" },
     stat2: { value: "85%",   label: "Casting réussi" },
     stat3: { value: "48h",   label: "Délai moyen",   icon: TrendingUp },
   },
 };
 
 export default function HeroSection() {
-  const [mode, setMode] = useState<Mode>("face");
+  const [mode, setMode] = useState<Mode>("talent");
   const content = HERO_CONTENT[mode];
 
   return (
@@ -73,7 +73,7 @@ export default function HeroSection() {
                 aria-label="Choisissez votre profil"
                 className="flex p-1 bg-white/80 backdrop-blur-sm rounded-xl border border-[#dde0dc] shadow-soft w-fit"
               >
-                {(["face", "producteur"] as Mode[]).map((m) => (
+                {(["talent", "recruteur"] as Mode[]).map((m) => (
                   <button
                     key={m}
                     onClick={() => setMode(m)}
@@ -93,12 +93,12 @@ export default function HeroSection() {
                       />
                     )}
                     <span className="relative flex items-center gap-2">
-                      {m === "face" ? (
+                      {m === "talent" ? (
                         <Users size={15} aria-hidden="true" />
                       ) : (
                         <Briefcase size={15} aria-hidden="true" />
                       )}
-                      {m === "face" ? "Je suis une face" : "Je suis producteur"}
+                      {m === "talent" ? "Je suis un talent" : "Je suis recruteur"}
                     </span>
                   </button>
                 ))}
@@ -176,7 +176,7 @@ export default function HeroSection() {
                 >
                   <Image
                     src={content.image}
-                    alt={mode === "face" ? "Talent WeAct" : "Producteur WeAct"}
+                    alt={mode === "talent" ? "Talent E.Talent" : "Recruteur E.Talent"}
                     fill
                     priority
                     className="object-cover"
@@ -200,10 +200,10 @@ export default function HeroSection() {
                   </div>
                   <div>
                     <p className="font-heading font-600 text-sm text-forest-700">
-                      {mode === "face" ? "Amina K. — Actrice" : "Studio Lumière — Producteur"}
+                      {mode === "talent" ? "Amina K. — Actrice" : "Studio Lumière — Recruteur"}
                     </p>
                     <p className="font-body text-body-sm text-[#6b7280]">
-                      {mode === "face"
+                      {mode === "talent"
                         ? "3 missions réalisées ce mois"
                         : "12 talents recrutés cette semaine"}
                     </p>

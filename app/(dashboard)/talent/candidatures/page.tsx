@@ -40,7 +40,7 @@ export default async function FaceCandidaturesPage() {
           <Briefcase size={32} className="text-sand-300 mx-auto mb-4" />
           <p className="font-heading text-xl text-ink mb-2">Aucune candidature</p>
           <p className="text-sand-500 text-sm mb-6">Explorez les missions disponibles et postulez.</p>
-          <Link href="/face/missions" className="btn btn-em">Voir les missions</Link>
+          <Link href="/talent/missions" className="btn btn-em">Voir les missions</Link>
         </div>
       ) : (
         <div className="flex flex-col gap-8">

@@ -19,7 +19,7 @@ export default function CTASection() {
             </div>
 
             <div className="relative z-10 flex flex-col items-center gap-6 max-w-2xl mx-auto">
-              <span className="label-gold">Rejoignez WeAct</span>
+              <span className="label-gold">Rejoignez E.Talent</span>
 
               <h2 className="heading-display text-[clamp(2rem,4vw,3.5rem)] text-white">
                 Votre carrière commence{" "}
@@ -28,11 +28,11 @@ export default function CTASection() {
 
               <p className="font-body text-body-xl text-forest-200 leading-relaxed">
                 Gratuit, rapide, sans engagement. Créez votre profil en 5 minutes et rejoignez
-                la communauté WeAct.
+                la communauté E.Talent.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Link href="/inscription/face" className="btn-gold group">
+                <Link href="/inscription/talent" className="btn-gold group">
                   <Users size={17} aria-hidden="true" />
                   Je suis un talent
                   <ArrowRight
@@ -41,9 +41,9 @@ export default function CTASection() {
                     className="group-hover:translate-x-1 transition-transform duration-200"
                   />
                 </Link>
-                <Link href="/inscription/producteur" className="btn-outline border-white/40 text-white hover:bg-white hover:text-forest-700">
+                <Link href="/inscription/recruteur" className="btn-outline border-white/40 text-white hover:bg-white hover:text-forest-700">
                   <Briefcase size={17} aria-hidden="true" />
-                  Je suis producteur
+                  Je suis recruteur
                 </Link>
               </div>
 

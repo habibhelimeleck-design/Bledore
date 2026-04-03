@@ -84,7 +84,7 @@ export default async function TalentsCatalogPage({ searchParams }: Props) {
           </div>
           <button type="submit" className="btn btn-em py-2.5 text-sm">Filtrer</button>
           {hasFilters && (
-            <Link href="/producteur/talents" className="btn btn-ghost py-2.5 text-sm">Réinitialiser</Link>
+            <Link href="/recruteur/talents" className="btn btn-ghost py-2.5 text-sm">Réinitialiser</Link>
           )}
         </form>
       </div>

@@ -8,9 +8,9 @@ const MISSIONS = [
   {
     id: 1,
     title: "Visage pub nationale — Télévision",
-    brand: "Bénin Télécom",
-    location: "Cotonou",
-    budget: "150 000 – 250 000 XOF",
+    brand: "Gabon Télécom",
+    location: "Libreville",
+    budget: "150 000 – 250 000 XAF",
     deadline: "3 jours restants",
     urgent: true,
     tags: ["Acteur/trice", "18-35 ans", "Mixte"],
@@ -19,9 +19,9 @@ const MISSIONS = [
   {
     id: 2,
     title: "Mannequin catalogue mode printemps 2025",
-    brand: "Studio Benin Mode",
-    location: "Cotonou + Porto-Novo",
-    budget: "80 000 – 120 000 XOF",
+    brand: "Studio Gabon Mode",
+    location: "Libreville + Port-Gentil",
+    budget: "80 000 – 120 000 XAF",
     deadline: "7 jours restants",
     urgent: false,
     tags: ["Mannequin", "Femme", "1m65+"],
@@ -30,20 +30,20 @@ const MISSIONS = [
   {
     id: 3,
     title: "Voix off publicité radio FM",
-    brand: "Gulf Banque Bénin",
+    brand: "BGFI Bank Gabon",
     location: "Télétravail possible",
-    budget: "40 000 – 70 000 XOF",
+    budget: "40 000 – 70 000 XAF",
     deadline: "12 jours restants",
     urgent: false,
-    tags: ["Voix", "Français", "Fon"],
+    tags: ["Voix", "Français", "Fang"],
     category: "Voix off",
   },
   {
     id: 4,
     title: "Danseurs Afrobeat — Clip musical",
-    brand: "DioLaé Records",
-    location: "Cotonou",
-    budget: "60 000 – 100 000 XOF",
+    brand: "Nzalang Records",
+    location: "Libreville",
+    budget: "60 000 – 100 000 XAF",
     deadline: "5 jours restants",
     urgent: true,
     tags: ["Danseur/se", "Afrobeat", "Energie"],
@@ -52,9 +52,9 @@ const MISSIONS = [
   {
     id: 5,
     title: "Testimonial produit cosmétique naturel",
-    brand: "BeautyBJ",
-    location: "Cotonou",
-    budget: "50 000 – 90 000 XOF",
+    brand: "BeautyGA",
+    location: "Libreville",
+    budget: "50 000 – 90 000 XAF",
     deadline: "9 jours restants",
     urgent: false,
     tags: ["Femme", "25-45 ans", "Naturel"],
@@ -62,10 +62,10 @@ const MISSIONS = [
   },
   {
     id: 6,
-    title: "Acteur principal web-série BeninStars",
+    title: "Acteur principal web-série GabonStars",
     brand: "AfroContent Studio",
-    location: "Abomey-Calavi",
-    budget: "300 000+ XOF",
+    location: "Owendo",
+    budget: "300 000+ XAF",
     deadline: "14 jours restants",
     urgent: false,
     tags: ["Acteur", "Homme", "20-40 ans"],
@@ -185,9 +185,9 @@ export default function MissionsSection() {
         <AnimatedSection delay={0.3} className="text-center mt-14">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-forest-50 rounded-2xl border border-forest-100">
             <p className="font-body text-body-lg text-forest-700 font-500">
-              Vous êtes producteur ou marque ?
+              Vous êtes recruteur ou marque ?
             </p>
-            <Link href="/inscription/producteur" className="btn-primary shrink-0">
+            <Link href="/inscription/recruteur" className="btn-primary shrink-0">
               Publier un casting gratuit
               <ArrowRight size={15} aria-hidden="true" />
             </Link>

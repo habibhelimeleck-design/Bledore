@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import Sidebar from "@/components/dashboard/Sidebar";
 import MobileSidebarToggle from "@/components/dashboard/MobileSidebarToggle";
 
-export default async function ProducteurLayout({ children }: { children: React.ReactNode }) {
+export default async function TalentLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
 
   const { data: { user } } = await supabase.auth.getUser();
@@ -15,14 +15,19 @@ export default async function ProducteurLayout({ children }: { children: React.R
     .eq("id", user.id)
     .single();
 
-  if (!profile || profile.role !== "producer") redirect("/face");
+  if (!profile || profile.role !== "face") redirect("/recruteur");
 
   return (
     <div className="flex h-screen bg-sand-50 overflow-hidden">
+      {/* Desktop sidebar */}
       <div className="hidden lg:flex flex-shrink-0">
-        <Sidebar profile={profile} role="producer" />
+        <Sidebar profile={profile} role="talent" />
       </div>
-      <MobileSidebarToggle profile={profile} role="producer" />
+
+      {/* Mobile sidebar toggle */}
+      <MobileSidebarToggle profile={profile} role="talent" />
+
+      {/* Main content */}
       <main className="flex-1 overflow-y-auto">
         <div className="min-h-full p-6 lg:p-8 pt-16 lg:pt-8">
           {children}

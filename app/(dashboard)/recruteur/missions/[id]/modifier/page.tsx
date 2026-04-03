@@ -67,7 +67,7 @@ export default function ModifierMissionPage() {
 
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
-      <Link href={`/producteur/missions/${id}`} className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink mb-6 transition-colors">
+      <Link href={`/recruteur/missions/${id}`} className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink mb-6 transition-colors">
         <ChevronLeft size={15} /> Retour
       </Link>
       <div className="mb-8">

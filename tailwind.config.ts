@@ -32,6 +32,27 @@ const config: Config = {
           dark:    "#a8832e",
           muted:   "rgba(212,168,67,0.15)",
         },
+        // ── Forest alias (= em) — pour compatibilité composants ─
+        forest: {
+          50:  "#f2fdf7",
+          100: "#e4faf0",
+          200: "#b8f4d6",
+          300: "#7de8b4",
+          400: "#26d07c",
+          500: "#1a9958",
+          600: "#138a48",
+          700: "#0d6637",
+          800: "#0a5229",
+          900: "#063d1e",
+          950: "#020a06",
+        },
+        // ── Cream (ancien template) ───────────────────────────
+        cream: {
+          50:  "#faf8f5",
+          100: "#f5f1ea",
+          200: "#ebe3d5",
+          300: "#d6c9b2",
+        },
         // ── Neutral Sand ─────────────────────────────────────────
         sand: {
           50:  "#faf8f5",
@@ -67,6 +88,7 @@ const config: Config = {
         "display-xl": ["clamp(3rem,8vw,6rem)",    { lineHeight: "1.05", letterSpacing: "-0.03em" }],
         "display-lg": ["clamp(2.5rem,6vw,4.5rem)",{ lineHeight: "1.08", letterSpacing: "-0.025em" }],
         "display":    ["clamp(2rem,4vw,3rem)",    { lineHeight: "1.1",  letterSpacing: "-0.02em" }],
+        "display-md": ["clamp(1.875rem,3.5vw,2.75rem)", { lineHeight: "1.05", letterSpacing: "-0.025em" }],
         "h1": ["clamp(1.75rem,3vw,2.5rem)", { lineHeight: "1.15" }],
         "h2": ["clamp(1.5rem,2.5vw,2rem)",  { lineHeight: "1.2"  }],
         "h3": ["clamp(1.25rem,2vw,1.5rem)", { lineHeight: "1.3"  }],
@@ -97,6 +119,7 @@ const config: Config = {
         "card-hover": "0 4px 24px rgba(3,15,10,0.10), 0 1px 3px rgba(3,15,10,0.06)",
         "soft":       "0 2px 20px rgba(3,15,10,0.06)",
         "medium":     "0 8px 40px rgba(3,15,10,0.10)",
+        "strong":     "0 16px 60px rgba(3,15,10,0.18)",
       },
       backgroundImage: {
         "em-gradient":   "linear-gradient(135deg, #063d1e 0%, #030f0a 60%)",

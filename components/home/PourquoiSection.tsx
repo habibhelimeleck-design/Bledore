@@ -24,7 +24,7 @@ const RAISONS = [
     icon: Globe,
     title: "Réseau africain",
     description:
-      "Bénin, Togo, Côte d'Ivoire, Sénégal… WeAct s'étend à travers toute l'Afrique de l'Ouest.",
+      "Gabon, Congo, Cameroun, Centrafrique… E.Talent s'étend à travers toute l'Afrique centrale.",
     color: "#d4af87",
     bg:    "#fdf7f0",
   },
@@ -40,7 +40,7 @@ const RAISONS = [
     icon: HeartHandshake,
     title: "Support dédié",
     description:
-      "Notre équipe béninoise est disponible 7j/7 pour vous accompagner à chaque étape de vos projets.",
+      "Notre équipe gabonaise est disponible 7j/7 pour vous accompagner à chaque étape de vos projets.",
     color: "#10443e",
     bg:    "#f0f7f6",
   },
@@ -57,7 +57,7 @@ const RAISONS = [
 const STATS = [
   { value: "2 400+", label: "Talents inscrits",    sublabel: "et en croissance" },
   { value: "340+",   label: "Missions réalisées",  sublabel: "cette année" },
-  { value: "120+",   label: "Producteurs actifs",  sublabel: "au Bénin & Afrique" },
+  { value: "120+",   label: "Producteurs actifs",  sublabel: "au Gabon & Afrique" },
   { value: "98%",    label: "Satisfaction client", sublabel: "selon nos enquêtes" },
 ];
 
@@ -67,12 +67,12 @@ export default function PourquoiSection() {
       <div className="container-xl">
         {/* Header */}
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-          <span className="label-gold mb-4 block">Pourquoi WeAct</span>
+          <span className="label-gold mb-4 block">Pourquoi E.Talent</span>
           <h2 className="heading text-display-md text-white mb-5">
             La plateforme conçue pour l'Afrique
           </h2>
           <p className="font-body text-body-lg text-forest-200 leading-relaxed">
-            WeAct n'est pas un copier-coller d'une plateforme occidentale. C'est une solution
+            E.Talent n'est pas un copier-coller d'une plateforme occidentale. C'est une solution
             pensée pour les réalités, les besoins et les ambitions des talents africains.
           </p>
         </AnimatedSection>

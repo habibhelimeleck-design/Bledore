@@ -64,7 +64,7 @@ export default async function FaceMissionsPage({ searchParams }: Props) {
           </div>
           <button type="submit" className="btn btn-em py-2.5 text-sm">Filtrer</button>
           {(params.category || params.city || params.q) && (
-            <Link href="/face/missions" className="btn btn-ghost py-2.5 text-sm">Réinitialiser</Link>
+            <Link href="/talent/missions" className="btn btn-ghost py-2.5 text-sm">Réinitialiser</Link>
           )}
         </form>
       </div>

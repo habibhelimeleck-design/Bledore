@@ -74,7 +74,7 @@ export default function NouvelleMissionPage() {
 
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
-      <Link href="/producteur/missions" className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink mb-6 transition-colors">
+      <Link href="/recruteur/missions" className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink mb-6 transition-colors">
         <ChevronLeft size={15} /> Retour aux missions
       </Link>
 

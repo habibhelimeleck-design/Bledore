@@ -67,14 +67,14 @@ export default async function ProducteurCandidaturesPage({ searchParams }: Props
       {/* Status tabs */}
       <div className="flex flex-wrap gap-2 mb-6">
         <Link
-          href="/producteur/candidatures"
+          href="/recruteur/candidatures"
           className={`badge text-sm px-3 py-1.5 ${!params.status ? "badge-em font-semibold" : "badge-sand hover:bg-sand-100"}`}>
           Toutes ({(applications ?? []).length + (params.status ? 0 : 0)})
         </Link>
         {ALL_STATUSES.map((s) => (
           <Link
             key={s}
-            href={`/producteur/candidatures?status=${s}`}
+            href={`/recruteur/candidatures?status=${s}`}
             className={`badge text-sm px-3 py-1.5 ${params.status === s ? `${APPLICATION_STATUS_BADGE[s]} font-semibold` : "badge-sand hover:bg-sand-100"}`}>
             {APPLICATION_STATUS_LABELS[s]} ({counts[s]})
           </Link>
@@ -99,7 +99,7 @@ function ApplicationRow({ app }: { app: any }) {
   const mission = app.missions;
 
   return (
-    <Link href={`/producteur/missions/${mission?.id}`}
+    <Link href={`/recruteur/missions/${mission?.id}`}
       className="card p-4 flex items-center gap-4 hover:shadow-md transition-shadow group">
       {/* Avatar */}
       <div className="relative w-11 h-11 rounded-full bg-em-100 flex-shrink-0 overflow-hidden">
@@ -160,7 +160,7 @@ function EmptyState({ filtered }: { filtered?: boolean }) {
           : "Publiez des missions pour recevoir des candidatures de talents."}
       </p>
       {!filtered && (
-        <Link href="/producteur/missions/nouvelle" className="btn btn-em">Créer une mission</Link>
+        <Link href="/recruteur/missions/nouvelle" className="btn btn-em">Créer une mission</Link>
       )}
     </div>
   );

@@ -7,7 +7,7 @@ import type { Profile } from "@/lib/types/database";
 
 interface Props {
   profile: Profile;
-  role: "face" | "producer";
+  role: "talent" | "producer";
 }
 
 export default function MobileSidebarToggle({ profile, role }: Props) {

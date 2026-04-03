@@ -44,14 +44,14 @@ export default function FooterSection() {
           <div className="col-span-2 lg:col-span-1 flex flex-col gap-5">
             <Link href="/" className="flex items-center gap-2.5 group w-fit">
               <div className="w-9 h-9 rounded-xl bg-forest-600 flex items-center justify-center group-hover:bg-forest-500 transition-colors duration-250">
-                <span className="text-white font-heading font-800 text-sm">W</span>
+                <span className="text-white font-heading font-800 text-sm">E</span>
               </div>
               <span className="font-heading font-700 text-xl text-white tracking-tight">
-                WeAct
+                E.<span className="text-forest-400">Talent</span>
               </span>
             </Link>
             <p className="font-body text-body-sm text-forest-300 leading-relaxed max-w-[220px]">
-              La plateforme de casting et talents n°1 au Bénin et en Afrique de l'Ouest.
+              La plateforme de casting et talents n°1 au Gabon et en Afrique centrale.
             </p>
             {/* Social */}
             <div className="flex gap-3">
@@ -95,12 +95,12 @@ export default function FooterSection() {
       <div className="border-t border-white/8">
         <div className="container-xl py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-forest-400">
-            © {new Date().getFullYear()} WeAct Bénin. Tous droits réservés.
+            © {new Date().getFullYear()} E.Talent Gabon. Tous droits réservés.
           </p>
           <div className="flex items-center gap-1.5">
             <span className="font-body text-xs text-forest-400">Fait avec</span>
             <span className="text-gold-DEFAULT text-xs">♥</span>
-            <span className="font-body text-xs text-forest-400">au Bénin 🇧🇯</span>
+            <span className="font-body text-xs text-forest-400">au Gabon 🇬🇦</span>
           </div>
         </div>
       </div>

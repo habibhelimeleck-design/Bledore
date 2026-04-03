@@ -27,7 +27,7 @@ const ETAPES = [
     icon: Handshake,
     title: "Postulez & collaborez",
     description:
-      "Envoyez votre candidature en un clic. Échangez directement avec le producteur via notre messagerie intégrée sécurisée.",
+      "Envoyez votre candidature en un clic. Échangez directement avec le recruteur via notre messagerie intégrée sécurisée.",
     accent: "#62a29a",
   },
   {
@@ -51,7 +51,7 @@ export default function EtapesSection() {
             4 étapes simples pour commencer
           </h2>
           <p className="font-body text-body-lg text-[#6b7280]">
-            De votre inscription à votre première mission, WeAct simplifie chaque étape du
+            De votre inscription à votre première mission, E.Talent simplifie chaque étape du
             processus pour vous permettre de vous concentrer sur l'essentiel : votre talent.
           </p>
         </AnimatedSection>

@@ -66,7 +66,7 @@ export default function InscriptionFacePage() {
       }).eq("id", user.id);
     }
 
-    router.push("/face");
+    router.push("/talent");
     router.refresh();
   }
 

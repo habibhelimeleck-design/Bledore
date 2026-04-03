@@ -38,7 +38,7 @@ export default async function MissionDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="max-w-4xl mx-auto animate-fade-in">
       <div className="flex items-center gap-3 mb-6">
-        <Link href="/producteur/missions" className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink transition-colors">
+        <Link href="/recruteur/missions" className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink transition-colors">
           <ChevronLeft size={15} /> Mes missions
         </Link>
         <span className="text-sand-300">/</span>
@@ -58,7 +58,7 @@ export default async function MissionDetailPage({ params }: { params: Promise<{ 
             </div>
             <h1 className="font-heading text-h1 text-ink">{mission.title}</h1>
           </div>
-          <Link href={`/producteur/missions/${id}/modifier`} className="btn btn-outline btn-sm flex-shrink-0">
+          <Link href={`/recruteur/missions/${id}/modifier`} className="btn btn-outline btn-sm flex-shrink-0">
             <Edit size={14} /> Modifier
           </Link>
         </div>

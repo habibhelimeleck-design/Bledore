@@ -54,7 +54,7 @@ export default async function FaceDashboardPage() {
             <p className="font-semibold text-sand-800 text-sm">Complétez votre profil</p>
             <p className="text-sand-500 text-xs mt-0.5">Un profil complet augmente vos chances d'être sélectionné.</p>
           </div>
-          <Link href="/face/profil" className="btn btn-gold btn-sm flex-shrink-0">
+          <Link href="/talent/profil" className="btn btn-gold btn-sm flex-shrink-0">
             Compléter
           </Link>
         </div>
@@ -83,7 +83,7 @@ export default async function FaceDashboardPage() {
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-ink">Mes candidatures récentes</h2>
-            <Link href="/face/candidatures" className="text-sm text-em-600 hover:text-em-400 flex items-center gap-1 transition-colors">
+            <Link href="/talent/candidatures" className="text-sm text-em-600 hover:text-em-400 flex items-center gap-1 transition-colors">
               Voir tout <ArrowRight size={14} />
             </Link>
           </div>
@@ -94,7 +94,7 @@ export default async function FaceDashboardPage() {
                 <Search size={28} className="text-sand-300 mx-auto mb-3" />
                 <p className="font-semibold text-ink text-sm mb-1">Aucune candidature</p>
                 <p className="text-sand-500 text-sm mb-4">Explorez les missions disponibles.</p>
-                <Link href="/face/missions" className="btn btn-em btn-sm">Voir les missions</Link>
+                <Link href="/talent/missions" className="btn btn-em btn-sm">Voir les missions</Link>
               </div>
             ) : (applications ?? []).map((app: any) => (
               <div key={app.id} className="card p-4 flex items-center gap-4">
@@ -130,9 +130,9 @@ export default async function FaceDashboardPage() {
             <h2 className="font-semibold text-ink mb-4">Actions rapides</h2>
             <div className="flex flex-col gap-2">
               {[
-                { href: "/face/profil",  icon: User,   label: "Modifier mon profil",  sub: "Bio, compétences, contact" },
-                { href: "/face/galerie", icon: Images,  label: "Gérer ma galerie",     sub: "Photos et vidéos" },
-                { href: "/face/missions",icon: Search,  label: "Explorer les missions", sub: `${missions?.length ?? 0} nouvelles` },
+                { href: "/talent/profil",  icon: User,   label: "Modifier mon profil",  sub: "Bio, compétences, contact" },
+                { href: "/talent/galerie", icon: Images,  label: "Gérer ma galerie",     sub: "Photos et vidéos" },
+                { href: "/talent/missions",icon: Search,  label: "Explorer les missions", sub: `${missions?.length ?? 0} nouvelles` },
               ].map(({ href, icon: Icon, label, sub }) => (
                 <Link key={href} href={href}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-em-50 transition-colors group">
@@ -153,7 +153,7 @@ export default async function FaceDashboardPage() {
           <div>
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-semibold text-ink text-sm">Nouvelles missions</h2>
-              <Link href="/face/missions" className="text-xs text-em-600 hover:text-em-400 transition-colors">Tout voir</Link>
+              <Link href="/talent/missions" className="text-xs text-em-600 hover:text-em-400 transition-colors">Tout voir</Link>
             </div>
             <div className="flex flex-col gap-2">
               {(missions ?? []).slice(0, 3).map((m: any) => (

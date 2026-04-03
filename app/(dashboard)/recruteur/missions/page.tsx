@@ -24,7 +24,7 @@ export default async function ProducteurMissionsPage() {
           <p className="text-sand-400 font-mono text-xs uppercase tracking-widest mb-1">Gestion</p>
           <h1 className="font-heading text-h1 text-ink">Mes missions</h1>
         </div>
-        <Link href="/producteur/missions/nouvelle" className="btn btn-em">
+        <Link href="/recruteur/missions/nouvelle" className="btn btn-em">
           <Plus size={16} /> Nouvelle mission
         </Link>
       </div>
@@ -33,7 +33,7 @@ export default async function ProducteurMissionsPage() {
         <div className="card p-16 text-center">
           <p className="font-heading text-xl text-ink mb-2">Aucune mission créée</p>
           <p className="text-sand-500 text-sm mb-6">Publiez votre première mission pour trouver des talents.</p>
-          <Link href="/producteur/missions/nouvelle" className="btn btn-em">
+          <Link href="/recruteur/missions/nouvelle" className="btn btn-em">
             <Plus size={16} /> Créer une mission
           </Link>
         </div>
@@ -52,7 +52,7 @@ export default async function ProducteurMissionsPage() {
                       <span className="badge badge-em">{m.applications[0].count} candidature{m.applications[0].count > 1 ? "s" : ""}</span>
                     )}
                   </div>
-                  <Link href={`/producteur/missions/${m.id}`}
+                  <Link href={`/recruteur/missions/${m.id}`}
                     className="font-semibold text-ink hover:text-em-700 transition-colors text-base">
                     {m.title}
                   </Link>
@@ -65,7 +65,7 @@ export default async function ProducteurMissionsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <Link href={`/producteur/missions/${m.id}/modifier`}
+                  <Link href={`/recruteur/missions/${m.id}/modifier`}
                     className="btn btn-ghost btn-sm p-2.5" title="Modifier">
                     <Edit size={15} />
                   </Link>
