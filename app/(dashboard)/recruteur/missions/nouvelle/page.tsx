@@ -68,7 +68,7 @@ export default function NouvelleMissionPage() {
 
     setLoading(false);
     if (err) { setError(err.message); return; }
-    router.push(`/producteur/missions/${data.id}`);
+    router.push(`/recruteur/missions/${data.id}`);
     router.refresh();
   }
 

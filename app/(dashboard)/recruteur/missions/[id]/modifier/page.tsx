@@ -57,7 +57,7 @@ export default function ModifierMissionPage() {
 
     setSaving(false);
     if (err) { setError(err.message); return; }
-    router.push(`/producteur/missions/${id}`);
+    router.push(`/recruteur/missions/${id}`);
     router.refresh();
   }
 

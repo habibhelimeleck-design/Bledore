@@ -44,7 +44,7 @@ export default async function PublicTalentPage({ params }: { params: Promise<{ i
     .eq("media_type", "photo")
     .order("sort_order");
 
-  const backHref = userRole === "producer" ? `/producteur/talents` : "/";
+  const backHref = userRole === "producer" ? `/recruteur/talents` : "/";
 
   return (
     <div className="min-h-screen bg-sand-50">

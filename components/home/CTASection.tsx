@@ -2,63 +2,197 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Users, Briefcase } from "lucide-react";
+import { Users, Briefcase } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 export default function CTASection() {
   return (
-    <section className="section-padding bg-cream-200">
-      <div className="container-xl">
-        <AnimatedSection>
-          <div className="relative rounded-3xl overflow-hidden bg-forest-gradient p-12 md:p-16 lg:p-20 text-center">
-            {/* Background decoration */}
-            <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-              <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5 blur-2xl" />
-              <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-forest-600/30 blur-2xl" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-white/5" />
+    <section
+      className="relative overflow-hidden py-24 lg:py-32"
+      style={{ background: "#030f0a" }}
+      aria-labelledby="cta-title"
+    >
+      {/* Radial gradient background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 20% 50%, rgba(6,61,30,.5) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 30%, rgba(26,204,138,.05) 0%, transparent 60%)",
+        }}
+      />
+
+      <div className="container-xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          {/* Left — text */}
+          <AnimatedSection>
+            <span
+              className="mb-8 inline-flex items-center gap-2"
+              style={{
+                fontFamily: "var(--f-mono, 'DM Mono', monospace)",
+                fontSize: "0.6875rem",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "#26d07c",
+              }}
+            >
+              Rejoindre E.Talent
+            </span>
+
+            <h2
+              id="cta-title"
+              className="heading-display text-white mb-8"
+              style={{
+                fontSize: "clamp(2.5rem, 5vw, 5rem)",
+                fontWeight: 600,
+                lineHeight: 0.95,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              Votre carrière
+              <br />
+              commence
+              <br />
+              <em style={{ fontStyle: "italic", color: "#26d07c" }}>ici.</em>
+            </h2>
+
+            <p
+              className="mb-10"
+              style={{
+                fontSize: "1rem",
+                color: "rgba(255,255,255,.45)",
+                lineHeight: 1.75,
+                fontWeight: 300,
+                maxWidth: "400px",
+              }}
+            >
+              Gratuit, sans engagement. Créez votre profil en 5 minutes et
+              rejoignez la communauté E.Talent au Gabon.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3.5 mb-4">
+              <Link
+                href="/inscription/talent"
+                className="inline-flex items-center gap-2 rounded-full font-medium transition-all duration-300 hover:-translate-y-0.5"
+                style={{
+                  padding: "1rem 2rem",
+                  fontSize: "0.9375rem",
+                  background: "#26d07c",
+                  color: "#030f0a",
+                }}
+              >
+                <Users size={16} aria-hidden="true" />
+                Je suis un talent
+              </Link>
+              <Link
+                href="/inscription/recruteur"
+                className="inline-flex items-center gap-2 rounded-full font-medium transition-all duration-300 hover:bg-white/10"
+                style={{
+                  padding: "1rem 2rem",
+                  fontSize: "0.9375rem",
+                  border: "1px solid rgba(255,255,255,.2)",
+                  color: "rgba(255,255,255,.7)",
+                }}
+              >
+                <Briefcase size={16} aria-hidden="true" />
+                Je suis recruteur
+              </Link>
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-6 max-w-2xl mx-auto">
-              <span className="label-gold">Rejoignez E.Talent</span>
+            <p
+              style={{
+                fontSize: "0.8125rem",
+                color: "rgba(255,255,255,.35)",
+                marginTop: "1rem",
+              }}
+            >
+              Déjà membre ?{" "}
+              <Link
+                href="/connexion"
+                className="transition-colors duration-200 hover:text-white"
+                style={{
+                  color: "#d4af87",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                }}
+              >
+                Se connecter
+              </Link>
+            </p>
+          </AnimatedSection>
 
-              <h2 className="heading-display text-[clamp(2rem,4vw,3.5rem)] text-white">
-                Votre carrière commence{" "}
-                <span className="text-gold-DEFAULT">maintenant.</span>
-              </h2>
+          {/* Right — editorial image collage */}
+          <motion.div
+            className="relative h-[500px] hidden lg:block"
+            aria-hidden="true"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            {/* Image 1 */}
+            <div
+              className="absolute top-0 left-0 overflow-hidden"
+              style={{ width: 260, height: 360, borderRadius: 16 }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=85"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-              <p className="font-body text-body-xl text-forest-200 leading-relaxed">
-                Gratuit, rapide, sans engagement. Créez votre profil en 5 minutes et rejoignez
-                la communauté E.Talent.
-              </p>
+            {/* Image 2 */}
+            <div
+              className="absolute bottom-0 right-0 overflow-hidden"
+              style={{ width: 200, height: 280, borderRadius: 12 }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=85"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Link href="/inscription/talent" className="btn-gold group">
-                  <Users size={17} aria-hidden="true" />
-                  Je suis un talent
-                  <ArrowRight
-                    size={15}
-                    aria-hidden="true"
-                    className="group-hover:translate-x-1 transition-transform duration-200"
-                  />
-                </Link>
-                <Link href="/inscription/recruteur" className="btn-outline border-white/40 text-white hover:bg-white hover:text-forest-700">
-                  <Briefcase size={17} aria-hidden="true" />
-                  Je suis recruteur
-                </Link>
-              </div>
-
-              <p className="font-body text-xs text-forest-300 mt-2">
-                Déjà membre ?{" "}
-                <Link
-                  href="/connexion"
-                  className="text-gold-light underline underline-offset-2 hover:text-white transition-colors"
-                >
-                  Se connecter
-                </Link>
+            {/* Glassmorphism stat tag */}
+            <div
+              className="absolute"
+              style={{
+                top: 200,
+                right: 60,
+                background: "rgba(255,255,255,.06)",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(255,255,255,.1)",
+                borderRadius: 12,
+                padding: "0.875rem 1.25rem",
+              }}
+            >
+              <strong
+                style={{
+                  fontFamily: "var(--f-disp, 'Cormorant Garamond', serif)",
+                  fontSize: "1.75rem",
+                  fontWeight: 600,
+                  color: "#26d07c",
+                  display: "block",
+                }}
+              >
+                +12
+              </strong>
+              <p
+                style={{
+                  fontFamily: "var(--f-mono, 'DM Mono', monospace)",
+                  fontSize: "0.6875rem",
+                  color: "rgba(255,255,255,.4)",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  marginTop: "0.25rem",
+                }}
+              >
+                Castings ouverts
               </p>
             </div>
-          </div>
-        </AnimatedSection>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

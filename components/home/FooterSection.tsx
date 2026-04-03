@@ -3,27 +3,22 @@ import { Instagram, Facebook, Youtube, Twitter } from "lucide-react";
 
 const FOOTER_LINKS = {
   "Plateforme": [
-    { label: "Catalogue Talents",   href: "/talents"  },
-    { label: "Missions ouvertes",   href: "/missions" },
-    { label: "Comment ça marche",   href: "#etapes"   },
-    { label: "Tarifs",              href: "/tarifs"   },
+    { label: "Talents",         href: "/talents"  },
+    { label: "Missions",        href: "/missions" },
+    { label: "Process",         href: "#etapes"   },
+    { label: "Tarifs",          href: "/tarifs"   },
   ],
   "Ressources": [
-    { label: "Blog",            href: "/blog"      },
-    { label: "Guides talents",  href: "/guides"    },
-    { label: "Aide & Support",  href: "/aide"      },
-    { label: "Communauté",      href: "/communaute"},
-  ],
-  "Société": [
-    { label: "À propos",         href: "/a-propos"  },
-    { label: "Équipe",           href: "/equipe"    },
-    { label: "Partenaires",      href: "/partenaires"},
-    { label: "Contact",          href: "/contact"   },
+    { label: "Blog",        href: "/blog"       },
+    { label: "Guides",      href: "/guides"     },
+    { label: "Support",     href: "/aide"       },
+    { label: "Communauté",  href: "/communaute" },
   ],
   "Légal": [
-    { label: "Conditions d'utilisation", href: "/cgu"             },
-    { label: "Politique de confidentialité", href: "/confidentialite" },
-    { label: "Cookies",                  href: "/cookies"         },
+    { label: "CGU",                href: "/cgu"              },
+    { label: "Confidentialité",    href: "/confidentialite"  },
+    { label: "Cookies",            href: "/cookies"          },
+    { label: "Contact",            href: "/contact"          },
   ],
 };
 
@@ -36,50 +31,102 @@ const SOCIAL = [
 
 export default function FooterSection() {
   return (
-    <footer className="bg-[#0d2d29] text-forest-200">
-      {/* Main footer */}
-      <div className="container-xl py-16 lg:py-20">
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+    <footer
+      role="contentinfo"
+      style={{
+        background: "#020b06",
+        borderTop: "1px solid rgba(255,255,255,.05)",
+        padding: "5rem 0 2rem",
+      }}
+    >
+      <div className="container-xl">
+        {/* Main grid */}
+        <div
+          className="grid gap-12 mb-16"
+          style={{ gridTemplateColumns: "2fr 1fr 1fr 1fr" }}
+        >
           {/* Brand */}
-          <div className="col-span-2 lg:col-span-1 flex flex-col gap-5">
-            <Link href="/" className="flex items-center gap-2.5 group w-fit">
-              <div className="w-9 h-9 rounded-xl bg-forest-600 flex items-center justify-center group-hover:bg-forest-500 transition-colors duration-250">
-                <span className="text-white font-heading font-800 text-sm">E</span>
-              </div>
-              <span className="font-heading font-700 text-xl text-white tracking-tight">
-                E.<span className="text-forest-400">Talent</span>
+          <div className="col-span-1">
+            <Link href="/" className="block w-fit mb-4">
+              <span
+                style={{
+                  fontFamily: "var(--f-disp, 'Cormorant Garamond', serif)",
+                  fontSize: "1.5rem",
+                  fontWeight: 600,
+                  color: "white",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                E<span style={{ color: "#26d07c" }}>.</span>Talent
               </span>
             </Link>
-            <p className="font-body text-body-sm text-forest-300 leading-relaxed max-w-[220px]">
-              La plateforme de casting et talents n°1 au Gabon et en Afrique centrale.
+            <p
+              style={{
+                fontSize: "0.9375rem",
+                color: "rgba(255,255,255,.35)",
+                lineHeight: 1.7,
+                maxWidth: 260,
+                marginBottom: "2rem",
+                fontWeight: 300,
+              }}
+            >
+              La plateforme de casting premium du Gabon et d&apos;Afrique Centrale.
             </p>
-            {/* Social */}
-            <div className="flex gap-3">
+            <nav className="flex gap-2.5" aria-label="Réseaux sociaux">
               {SOCIAL.map(({ label, Icon, href }) => (
                 <Link
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-forest-600 flex items-center justify-center transition-all duration-250 focus-visible:outline-2 focus-visible:outline-white/50"
+                  className="flex items-center justify-center transition-all duration-300 focus-visible:outline-2 focus-visible:outline-white/50"
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: "50%",
+                    border: "1px solid rgba(255,255,255,.1)",
+                    color: "rgba(255,255,255,.4)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "#1a9958";
+                    (e.currentTarget as HTMLElement).style.color = "#26d07c";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,.1)";
+                    (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,.4)";
+                  }}
                 >
-                  <Icon size={15} aria-hidden="true" />
+                  <Icon size={14} aria-hidden="true" />
                 </Link>
               ))}
-            </div>
+            </nav>
           </div>
 
-          {/* Links */}
+          {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([group, links]) => (
-            <div key={group} className="flex flex-col gap-4">
-              <h3 className="font-heading font-600 text-sm text-white uppercase tracking-widest">
+            <div key={group} className="flex flex-col gap-6">
+              <h4
+                style={{
+                  fontFamily: "var(--f-mono, 'DM Mono', monospace)",
+                  fontSize: "0.625rem",
+                  fontWeight: 400,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,.3)",
+                }}
+              >
                 {group}
-              </h3>
-              <ul className="flex flex-col gap-3">
+              </h4>
+              <ul className="flex flex-col gap-3.5">
                 {links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="font-body text-body-sm text-forest-300 hover:text-white transition-colors duration-200"
+                      className="transition-colors duration-200 hover:text-white"
+                      style={{
+                        fontSize: "0.9rem",
+                        color: "rgba(255,255,255,.4)",
+                        fontWeight: 300,
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -89,19 +136,29 @@ export default function FooterSection() {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/8">
-        <div className="container-xl py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-forest-400">
-            © {new Date().getFullYear()} E.Talent Gabon. Tous droits réservés.
+        {/* Bottom bar */}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-4"
+          style={{
+            paddingTop: "2rem",
+            borderTop: "1px solid rgba(255,255,255,.05)",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--f-mono, 'DM Mono', monospace)",
+              fontSize: "0.625rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,.2)",
+            }}
+          >
+            © {new Date().getFullYear()} E.Talent Gabon · Tous droits réservés
           </p>
-          <div className="flex items-center gap-1.5">
-            <span className="font-body text-xs text-forest-400">Fait avec</span>
-            <span className="text-gold-DEFAULT text-xs">♥</span>
-            <span className="font-body text-xs text-forest-400">au Gabon 🇬🇦</span>
-          </div>
+          <p style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,.2)" }}>
+            Fait avec soin au Gabon 🇬🇦
+          </p>
         </div>
       </div>
     </footer>
