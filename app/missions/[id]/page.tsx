@@ -35,7 +35,7 @@ export default async function PublicMissionPage({ params }: { params: Promise<{ 
       .from("profiles").select("role").eq("id", user.id).single();
     userRole = profile?.role ?? null;
 
-    if (userRole === "face") {
+    if (userRole === "talent") {
       const { data: existing } = await supabase
         .from("applications").select("id").eq("mission_id", id).eq("face_id", user.id).single();
       alreadyApplied = !!existing;
@@ -61,7 +61,7 @@ export default async function PublicMissionPage({ params }: { params: Promise<{ 
           </Link>
           <div className="flex items-center gap-2">
             {user ? (
-              <Link href={userRole === "face" ? "/talent" : "/recruteur"} className="btn btn-outline btn-sm">
+              <Link href={userRole === "talent" ? "/talent" : "/recruteur"} className="btn btn-outline btn-sm">
                 Tableau de bord
               </Link>
             ) : (
@@ -75,7 +75,7 @@ export default async function PublicMissionPage({ params }: { params: Promise<{ 
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-        <Link href={userRole === "face" ? "/talent/missions" : "/"} className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink transition-colors mb-6">
+        <Link href={userRole === "talent" ? "/talent/missions" : "/"} className="inline-flex items-center gap-1 text-sm text-sand-500 hover:text-ink transition-colors mb-6">
           <ChevronLeft size={15} /> Retour aux missions
         </Link>
 

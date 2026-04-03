@@ -15,7 +15,7 @@ export default async function TalentLayout({ children }: { children: React.React
     .eq("id", user.id)
     .single();
 
-  if (!profile || profile.role !== "face") redirect("/recruteur");
+  if (!profile || profile.role !== "talent") redirect("/recruteur");
 
   return (
     <div className="flex h-screen bg-sand-50 overflow-hidden">

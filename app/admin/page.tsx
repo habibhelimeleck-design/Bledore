@@ -17,7 +17,7 @@ export default async function AdminDashboard() {
     { data: recentMissions },
   ] = await Promise.all([
     admin.from("profiles").select("*", { count: "exact", head: true }),
-    admin.from("profiles").select("*", { count: "exact", head: true }).eq("role", "face"),
+    admin.from("profiles").select("*", { count: "exact", head: true }).eq("role", "talent"),
     admin.from("profiles").select("*", { count: "exact", head: true }).eq("role", "producer"),
     admin.from("missions").select("*", { count: "exact", head: true }),
     admin.from("applications").select("*", { count: "exact", head: true }),

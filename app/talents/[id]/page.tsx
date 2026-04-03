@@ -16,7 +16,7 @@ export default async function PublicTalentPage({ params }: { params: Promise<{ i
     .from("profiles")
     .select("*")
     .eq("id", id)
-    .eq("role", "face")
+    .eq("role", "talent")
     .single();
 
   if (!talent) notFound();
@@ -61,7 +61,7 @@ export default async function PublicTalentPage({ params }: { params: Promise<{ i
           </Link>
           <div className="flex items-center gap-2">
             {user ? (
-              <Link href={userRole === "face" ? "/talent" : "/recruteur"} className="btn btn-outline btn-sm">
+              <Link href={userRole === "talent" ? "/talent" : "/recruteur"} className="btn btn-outline btn-sm">
                 Tableau de bord
               </Link>
             ) : (

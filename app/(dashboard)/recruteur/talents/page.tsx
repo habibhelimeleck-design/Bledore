@@ -19,7 +19,7 @@ export default async function TalentsCatalogPage({ searchParams }: Props) {
   let query = supabase
     .from("profiles")
     .select("id, full_name, avatar_url, bio, city, gender, skills, is_available, visibility")
-    .eq("role", "face")
+    .eq("role", "talent")
     .in("visibility", ["public", "producers_only"])
     .order("is_available", { ascending: false })
     .order("full_name");

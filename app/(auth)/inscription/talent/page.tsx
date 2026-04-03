@@ -45,7 +45,7 @@ export default function InscriptionFacePage() {
       options: {
         data: {
           full_name: form.full_name.trim(),
-          role: "face",
+          role: "talent",
         },
       },
     });

@@ -38,7 +38,7 @@ export default async function AdminUsersPage({ searchParams }: Props) {
             <label className="form-label text-xs">Rôle</label>
             <select name="role" className="form-input form-select py-2 text-sm" defaultValue={params.role ?? ""}>
               <option value="">Tous</option>
-              <option value="face">Talents</option>
+              <option value="talent">Talents</option>
               <option value="producer">Recruteurs</option>
             </select>
           </div>
@@ -78,8 +78,8 @@ export default async function AdminUsersPage({ searchParams }: Props) {
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <span className={`badge ${u.role === "face" ? "badge-em" : "badge-gold"}`}>
-                    {u.role === "face" ? "Talent" : "Recruteur"}
+                  <span className={`badge ${u.role === "talent" ? "badge-em" : "badge-gold"}`}>
+                    {u.role === "talent" ? "Talent" : "Recruteur"}
                   </span>
                 </td>
                 <td className="px-4 py-3 text-sand-500">{u.city ?? "—"}</td>

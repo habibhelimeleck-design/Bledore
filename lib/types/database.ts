@@ -1,4 +1,4 @@
-export type UserRole          = "face" | "producer";
+export type UserRole          = "talent" | "producer";
 export type ProfileVisibility = "public" | "producers_only" | "private";
 export type MissionStatus     = "draft" | "published" | "closed" | "archived";
 export type ApplicationStatus = "pending" | "viewed" | "shortlisted" | "accepted" | "rejected";
