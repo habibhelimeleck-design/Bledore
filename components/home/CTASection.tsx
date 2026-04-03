@@ -136,7 +136,7 @@ export default function CTASection() {
               style={{ width: 260, height: 360, borderRadius: 16 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=85"
+                src="/3.jpg"
                 alt=""
                 className="w-full h-full object-cover"
               />
@@ -148,7 +148,7 @@ export default function CTASection() {
               style={{ width: 200, height: 280, borderRadius: 12 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=85"
+                src="/4.jpg"
                 alt=""
                 className="w-full h-full object-cover"
               />

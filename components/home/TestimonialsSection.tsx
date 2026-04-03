@@ -11,16 +11,16 @@ const TESTIMONIALS = [
     quote:
       "Avant E.Talent, je cherchais des castings partout — réseaux sociaux, bouche-à-oreille... Maintenant, les opportunités viennent directement à moi. J'ai réalisé 8 missions en 3 mois !",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
+    image: "/1.jpg",
     missions: "18 missions",
   },
   {
-    name: "Marc D.",
-    role: "Directeur artistique, Studio Lumière",
+    name: "Gérard Bourobou",
+    role: "Entrepreneur digital, Libreville",
     quote:
       "On perd un temps fou à chercher des talents en dehors de E.Talent. Ici, je filtre exactement par ce que je cherche, je contacte directement. Notre dernier clip a été casté en moins de 48h.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+    image: "/7.jpg",
     missions: "23 castings publiés",
   },
   {
@@ -29,7 +29,7 @@ const TESTIMONIALS = [
     quote:
       "La plateforme est simple, belle et vraiment utile. Le paiement sécurisé, c'est ce qui m'a convaincue. Je n'ai jamais eu de problème.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80",
+    image: "/5.jpg",
     missions: "9 missions",
   },
 ];

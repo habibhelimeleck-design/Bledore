@@ -21,7 +21,7 @@ const TALENTS = [
     missions: 18,
     verified: true,
     categories: ["Acteurs"],
-    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80",
+    image: "/1.jpg",
     specialty: "Publicité, Cinéma",
   },
   {
@@ -33,7 +33,7 @@ const TALENTS = [
     missions: 24,
     verified: true,
     categories: ["Mannequins"],
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+    image: "/2.jpg",
     specialty: "Mode, Lifestyle",
   },
   {
@@ -45,7 +45,7 @@ const TALENTS = [
     missions: 12,
     verified: true,
     categories: ["Acteurs"],
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
+    image: "/3.jpg",
     specialty: "Théâtre, Web-séries",
   },
   {
@@ -57,7 +57,7 @@ const TALENTS = [
     missions: 9,
     verified: true,
     categories: ["Voix"],
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+    image: "/4.jpg",
     specialty: "Jingles, Doublage",
   },
   {
@@ -69,20 +69,20 @@ const TALENTS = [
     missions: 31,
     verified: true,
     categories: ["Mannequins"],
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+    image: "/5.jpg",
     specialty: "Editorial, Runway",
   },
   {
     id: 6,
-    name: "Patience Moussavou",
-    role: "Danseuse Afrobeat",
+    name: "Habib Lewouwa",
+    role: "Entrepreneur digital",
     city: "Libreville",
     rating: 4.8,
     missions: 15,
-    verified: false,
-    categories: ["Danseurs"],
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
-    specialty: "Vidéoclips, Événements",
+    verified: true,
+    categories: ["Mannequins"],
+    image: "/6.jpg",
+    specialty: "Brand, Contenu digital",
   },
 ];
 
