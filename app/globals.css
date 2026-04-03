@@ -465,3 +465,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #d6c9b2; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #b9a88a; }
+
+/* ─── Marquee animation ─────────────────────────────────────── */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }

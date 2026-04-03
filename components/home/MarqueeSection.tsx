@@ -44,13 +44,6 @@ export default function MarqueeSection() {
           </span>
         ))}
       </div>
-
-      <style jsx>{`
-        @keyframes marquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-      `}</style>
     </div>
   );
 }
