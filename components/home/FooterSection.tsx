@@ -78,21 +78,13 @@ export default function FooterSection() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex items-center justify-center transition-all duration-300 focus-visible:outline-2 focus-visible:outline-white/50"
+                  className="flex items-center justify-center transition-all duration-300 focus-visible:outline-2 focus-visible:outline-white/50 hover:border-em-600 hover:text-em-400"
                   style={{
                     width: 36,
                     height: 36,
                     borderRadius: "50%",
                     border: "1px solid rgba(255,255,255,.1)",
                     color: "rgba(255,255,255,.4)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "#1a9958";
-                    (e.currentTarget as HTMLElement).style.color = "#26d07c";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,.1)";
-                    (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,.4)";
                   }}
                 >
                   <Icon size={14} aria-hidden="true" />
