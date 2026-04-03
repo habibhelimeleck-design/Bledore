@@ -19,7 +19,7 @@ export default async function FaceCandidaturesPage() {
         profiles ( full_name, avatar_url, producer_accounts ( company_name, logo_url, is_verified ) )
       )
     `)
-    .eq("face_id", user.id)
+    .eq("talent_id", user.id)
     .order("created_at", { ascending: false });
 
   const grouped = {

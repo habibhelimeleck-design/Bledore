@@ -15,7 +15,7 @@ export default async function FaceDashboardPage() {
     supabase.from("profiles").select("*").eq("id", user.id).single(),
     supabase.from("applications")
       .select("*, missions(id, title, category, status, deadline, profiles(full_name, avatar_url), producer_accounts(company_name))")
-      .eq("face_id", user.id)
+      .eq("talent_id", user.id)
       .order("created_at", { ascending: false })
       .limit(5),
     supabase.from("missions")

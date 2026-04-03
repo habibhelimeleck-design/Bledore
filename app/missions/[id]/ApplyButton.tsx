@@ -30,7 +30,7 @@ export default function ApplyButton({ missionId, isOpen, userRole, alreadyApplie
 
     const { error } = await supabase.from("applications").insert({
       mission_id:   missionId,
-      face_id:      user.id,
+      talent_id:    user.id,
       cover_letter: letter || null,
       status:       "pending",
     });

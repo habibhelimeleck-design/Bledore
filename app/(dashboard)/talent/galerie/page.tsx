@@ -22,7 +22,7 @@ export default function FaceGaleriePage() {
       if (!user) return;
       setUserId(user.id);
       const { data } = await supabase.from("media_assets")
-        .select("*").eq("face_id", user.id).order("sort_order").order("created_at");
+        .select("*").eq("talent_id", user.id).order("sort_order").order("created_at");
       setMedia(data ?? []);
       setLoading(false);
     })();
@@ -47,7 +47,7 @@ export default function FaceGaleriePage() {
       const isVideo = file.type.startsWith("video/");
 
       const { data: asset } = await supabase.from("media_assets").insert({
-        face_id:    userId,
+        talent_id:    userId,
         media_type: isVideo ? "video" : "photo",
         url:        publicUrl,
         is_cover:   media.length === 0, // first one = cover
@@ -64,7 +64,7 @@ export default function FaceGaleriePage() {
   async function setCover(id: string) {
     if (!userId) return;
     // Remove cover from all
-    await supabase.from("media_assets").update({ is_cover: false }).eq("face_id", userId);
+    await supabase.from("media_assets").update({ is_cover: false }).eq("talent_id", userId);
     // Set new cover
     await supabase.from("media_assets").update({ is_cover: true }).eq("id", id);
     setMedia((prev) => prev.map((m) => ({ ...m, is_cover: m.id === id })));

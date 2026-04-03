@@ -40,7 +40,7 @@ export default async function PublicTalentPage({ params }: { params: Promise<{ i
   const { data: media } = await supabase
     .from("media_assets")
     .select("*")
-    .eq("face_id", id)
+    .eq("talent_id", id)
     .eq("media_type", "photo")
     .order("sort_order");
 

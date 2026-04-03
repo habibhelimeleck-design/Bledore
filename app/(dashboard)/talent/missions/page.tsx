@@ -27,7 +27,7 @@ export default async function FaceMissionsPage({ searchParams }: Props) {
 
   // Check which missions user already applied to
   const { data: applications } = await supabase
-    .from("applications").select("mission_id").eq("face_id", user.id);
+    .from("applications").select("mission_id").eq("talent_id", user.id);
   const appliedIds = new Set((applications ?? []).map((a: any) => a.mission_id));
 
   return (

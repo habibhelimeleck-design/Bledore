@@ -37,7 +37,7 @@ export default async function PublicMissionPage({ params }: { params: Promise<{ 
 
     if (userRole === "talent") {
       const { data: existing } = await supabase
-        .from("applications").select("id").eq("mission_id", id).eq("face_id", user.id).single();
+        .from("applications").select("id").eq("mission_id", id).eq("talent_id", user.id).single();
       alreadyApplied = !!existing;
     }
   }
