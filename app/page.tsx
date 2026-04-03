@@ -1,5 +1,6 @@
 import NavBar               from "@/components/home/NavBar";
 import HeroSection          from "@/components/home/HeroSection";
+import MarqueeSection       from "@/components/home/MarqueeSection";
 import EtapesSection        from "@/components/home/EtapesSection";
 import TalentsSection       from "@/components/home/TalentsSection";
 import MissionsSection      from "@/components/home/MissionsSection";
@@ -14,6 +15,7 @@ export default function HomePage() {
       <NavBar />
       <main id="main-content">
         <HeroSection />
+        <MarqueeSection />
         <EtapesSection />
         <TalentsSection />
         <MissionsSection />
