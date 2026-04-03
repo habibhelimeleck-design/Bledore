@@ -63,15 +63,15 @@ const STATS = [
 
 export default function PourquoiSection() {
   return (
-    <section id="pourquoi" className="section-padding bg-forest-gradient">
+    <section id="pourquoi" className="section-padding" style={{ background: "#071a10", color: "#ffffff" }}>
       <div className="container-xl">
         {/* Header */}
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-          <span className="label-gold mb-4 block">Pourquoi E.Talent</span>
-          <h2 className="heading text-display-md text-white mb-5">
-            La plateforme conçue pour l'Afrique
+          <span className="font-mono text-[0.6875rem] tracking-[0.2em] uppercase mb-6 block" style={{ color: "#26d07c" }}>Pourquoi E.Talent</span>
+          <h2 className="font-heading font-600 leading-[1.0] tracking-[-0.02em] text-white mb-5" style={{ fontSize: "clamp(2.25rem,4vw,4rem)" }}>
+            La plateforme conçue <em style={{ fontStyle: "italic", color: "#26d07c" }}>pour l'Afrique</em>
           </h2>
-          <p className="font-body text-body-lg text-forest-200 leading-relaxed">
+          <p className="font-body font-300 text-[1rem] leading-[1.75]" style={{ color: "rgba(255,255,255,0.5)", maxWidth: "480px", margin: "0 auto" }}>
             E.Talent n'est pas un copier-coller d'une plateforme occidentale. C'est une solution
             pensée pour les réalités, les besoins et les ambitions des talents africains.
           </p>

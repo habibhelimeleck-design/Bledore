@@ -42,15 +42,15 @@ const ETAPES = [
 
 export default function EtapesSection() {
   return (
-    <section id="etapes" className="section-padding bg-white">
+    <section id="etapes" className="section-padding" style={{ background: "#f5f4f0", color: "#030f0a" }}>
       <div className="container-xl">
         {/* Header */}
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
-          <span className="label-tag mb-4 block">Comment ça marche</span>
-          <h2 className="heading text-display-md text-forest-700 mb-5">
-            4 étapes simples pour commencer
+          <span className="font-mono text-[0.6875rem] tracking-[0.2em] uppercase text-em-500 mb-6 block">Comment ça marche</span>
+          <h2 className="font-heading font-600 leading-[1.0] tracking-[-0.02em] text-ink mb-5" style={{ fontSize: "clamp(2.25rem,4vw,4rem)" }}>
+            4 étapes <em style={{ fontStyle: "italic", color: "#1a9958" }}>simples</em> pour commencer
           </h2>
-          <p className="font-body text-body-lg text-[#6b7280]">
+          <p className="font-body font-300 text-[1rem] leading-[1.75]" style={{ color: "#3a3832" }}>
             De votre inscription à votre première mission, E.Talent simplifie chaque étape du
             processus pour vous permettre de vous concentrer sur l'essentiel : votre talent.
           </p>
@@ -62,7 +62,7 @@ export default function EtapesSection() {
             const Icon = etape.icon;
             return (
               <StaggerItem key={i}>
-                <div className="card-premium p-7 h-full flex flex-col gap-5 group">
+                <div className="p-7 h-full flex flex-col gap-5 group rounded-2xl bg-white transition-all duration-350 hover:-translate-y-1" style={{ border: "1px solid #e8e6df" }}>
                   {/* Number + Icon */}
                   <div className="flex items-start justify-between">
                     <div
@@ -77,8 +77,8 @@ export default function EtapesSection() {
                       />
                     </div>
                     <span
-                      className="font-heading font-800 text-4xl leading-none select-none transition-colors duration-300"
-                      style={{ color: `${etape.accent}20` }}
+                      className="font-heading font-300 text-5xl leading-none select-none tracking-[-0.03em] transition-colors duration-300 group-hover:text-em-500"
+                      style={{ color: "#e8e6df" }}
                     >
                       {etape.number}
                     </span>
@@ -94,10 +94,10 @@ export default function EtapesSection() {
 
                   {/* Text */}
                   <div className="flex flex-col gap-3">
-                    <h3 className="heading font-heading font-700 text-lg text-forest-700 leading-snug">
+                    <h3 className="font-heading font-600 text-[1.5rem] text-ink leading-snug tracking-[-0.01em]">
                       {etape.title}
                     </h3>
-                    <p className="font-body text-body-sm text-[#6b7280] leading-relaxed">
+                    <p className="font-body font-300 text-[0.9375rem] leading-[1.7]" style={{ color: "#3a3832" }}>
                       {etape.description}
                     </p>
                   </div>
