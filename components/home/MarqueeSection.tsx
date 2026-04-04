@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+
 const ITEMS = [
   { label: "Acteurs",       highlight: "Libreville"  },
   { label: "Mannequins",    highlight: "Port-Gentil" },
@@ -10,7 +14,29 @@ const ITEMS = [
 ];
 
 export default function MarqueeSection() {
-  // Triple items: ensures seamless loop even on wide screens, no visible jump
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    let x = 0;
+    let raf: number;
+
+    const tick = () => {
+      x -= 0.5;
+      // Loop: 3 copies → reset after 1 copy width (= totalWidth / 3)
+      const oneWidth = el.scrollWidth / 3;
+      if (Math.abs(x) >= oneWidth) x = 0;
+      el.style.transform = `translateX(${x}px)`;
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  // Triple items pour loop seamless
   const track = [...ITEMS, ...ITEMS, ...ITEMS];
 
   return (
@@ -26,15 +52,12 @@ export default function MarqueeSection() {
       }}
     >
       <div
-        className="marquee-track"
+        ref={trackRef}
         style={{
           display: "flex",
           flexWrap: "nowrap",
           width: "max-content",
-          animation: "marquee 48s linear infinite",
           willChange: "transform",
-          transform: "translateZ(0)",
-          backfaceVisibility: "hidden",
         }}
       >
         {track.map((item, i) => (
