@@ -10,8 +10,8 @@ const ITEMS = [
 ];
 
 export default function MarqueeSection() {
-  // Duplicate items to create seamless loop
-  const track = [...ITEMS, ...ITEMS];
+  // Triple items: ensures seamless loop even on wide screens, no visible jump
+  const track = [...ITEMS, ...ITEMS, ...ITEMS];
 
   return (
     <div
@@ -26,12 +26,15 @@ export default function MarqueeSection() {
       }}
     >
       <div
+        className="marquee-track"
         style={{
           display: "flex",
           flexWrap: "nowrap",
           width: "max-content",
-          animation: "marquee 28s linear infinite",
+          animation: "marquee 48s linear infinite",
           willChange: "transform",
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
         }}
       >
         {track.map((item, i) => (

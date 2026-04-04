@@ -33,15 +33,15 @@ export default function FooterSection() {
   return (
     <footer
       role="contentinfo"
+      className="pt-12 pb-8 lg:pt-20"
       style={{
         background: "#020b06",
         borderTop: "1px solid rgba(255,255,255,.05)",
-        padding: "5rem 0 2rem",
       }}
     >
       <div className="container-xl">
-        {/* Main grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 lg:gap-12 mb-16">
+        {/* Main grid — mobile: 2 cols (brand full-width + 2 colonnes liens), desktop: 4 cols */}
+        <div className="grid grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 lg:gap-12 mb-12 lg:mb-16">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="block w-fit mb-4">

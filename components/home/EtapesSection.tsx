@@ -58,8 +58,7 @@ export default function EtapesSection() {
 
         {/* Steps — mobile horizontal snap scroll */}
         <div
-          className="flex sm:hidden overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-5 px-5"
-          style={{ scrollbarWidth: "none" } as React.CSSProperties}
+          className="flex sm:hidden overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-5 px-5 hide-scrollbar"
         >
           {ETAPES.map((etape, i) => {
             const Icon = etape.icon;

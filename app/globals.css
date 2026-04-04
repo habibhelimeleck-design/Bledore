@@ -466,8 +466,23 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 ::-webkit-scrollbar-thumb { background: #d6c9b2; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #b9a88a; }
 
+/* ─── Masquer scrollbar horizontal sur mobile snap containers ── */
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
 /* ─── Marquee animation ─────────────────────────────────────── */
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
 
 /* ─── Horizontal cards auto-scroll (mobile talents) ─────────── */
-@keyframes scroll-cards { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes scroll-cards {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .scroll-cards-track { animation: none !important; }
+}

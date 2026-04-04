@@ -73,7 +73,7 @@ export default function CTASection() {
             <div className="flex flex-col sm:flex-row gap-3.5 mb-4">
               <Link
                 href="/inscription/talent"
-                className="inline-flex items-center gap-2 rounded-full font-medium transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
                 style={{
                   padding: "1rem 2rem",
                   fontSize: "0.9375rem",
@@ -86,7 +86,7 @@ export default function CTASection() {
               </Link>
               <Link
                 href="/inscription/recruteur"
-                className="inline-flex items-center gap-2 rounded-full font-medium transition-all duration-300 hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 hover:bg-white/10 w-full sm:w-auto"
                 style={{
                   padding: "1rem 2rem",
                   fontSize: "0.9375rem",

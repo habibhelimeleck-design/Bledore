@@ -196,8 +196,8 @@ export default function TalentsSection() {
           </Link>
         </AnimatedSection>
 
-        {/* Category Filter */}
-        <AnimatedSection delay={0.1} className="mb-10">
+        {/* Category Filter — desktop uniquement (mobile: carousel fixe sur tous les talents) */}
+        <AnimatedSection delay={0.1} className="mb-10 hidden sm:block">
           <div
             role="group"
             aria-label="Filtrer par catégorie"
@@ -222,19 +222,22 @@ export default function TalentsSection() {
         {/* Mobile — auto-scroll horizontal continu */}
         <div className="sm:hidden overflow-hidden -mx-5">
           <div
-            className="flex gap-4 px-5"
+            className="scroll-cards-track flex gap-4 px-5"
             style={{
-              animation: "scroll-cards 30s linear infinite",
+              animation: "scroll-cards 42s linear infinite",
               willChange: "transform",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
               width: "max-content",
             }}
           >
-            {[...filtered, ...filtered].map((talent, i) => (
+            {/* Triple duplication pour loop sans saut visible */}
+            {[...TALENTS, ...TALENTS, ...TALENTS].map((talent, i) => (
               <Link
                 key={i}
                 href={`/talents/${talent.id}`}
                 className="group relative flex flex-col overflow-hidden rounded-2xl shrink-0"
-                style={{ width: "72vw" }}
+                style={{ width: "72vw", transform: "translateZ(0)" }}
                 aria-label={`Voir le profil de ${talent.name}, ${talent.role}`}
               >
                 <div className="relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
@@ -242,12 +245,15 @@ export default function TalentsSection() {
                     src={talent.image}
                     alt={`Portrait de ${talent.name}`}
                     fill
+                    priority={i < 6}
                     className="object-cover"
                     sizes="72vw"
+                    style={{ transform: "translateZ(0)" }}
                   />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(3,15,10,0.95) 0%, rgba(3,15,10,0.3) 45%, transparent 70%)" }} />
                   {talent.verified && (
-                    <div className="absolute top-3 left-3 flex items-center gap-1 backdrop-blur-sm rounded-full px-2.5 py-1" style={{ background: "rgba(38,208,124,0.15)", border: "1px solid rgba(38,208,124,0.2)" }}>
+                    /* Solid bg au lieu de backdrop-blur (évite scintillement layer iOS) */
+                    <div className="absolute top-3 left-3 flex items-center gap-1 rounded-full px-2.5 py-1" style={{ background: "rgba(10,40,22,0.85)", border: "1px solid rgba(38,208,124,0.25)" }}>
                       <Verified size={10} fill="#7de8b4" stroke="none" aria-hidden="true" />
                       <span className="font-mono text-[0.5625rem] tracking-[0.1em] uppercase text-em-300">Vérifié</span>
                     </div>

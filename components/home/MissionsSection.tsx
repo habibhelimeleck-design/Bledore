@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { MapPin, Clock, Banknote, ArrowRight } from "lucide-react";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
@@ -68,8 +67,7 @@ export default async function MissionsSection() {
           <>
             {/* Mobile — snap scroll horizontal */}
             <div
-              className="flex sm:hidden overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-5 px-5"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as CSSProperties}
+              className="flex sm:hidden overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-5 px-5 hide-scrollbar"
             >
               {missions.map((mission: any) => {
                 const producer = (mission.profiles as any)?.producer_accounts;
