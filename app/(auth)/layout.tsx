@@ -42,7 +42,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           {/* Talent cards */}
           <div className="flex flex-col gap-4 mt-4">
             {[
-              { img: "/1.jpg", name: "Delvane BKG", role: "Photographe / Vidéaste", city: "Libreville" },
+              { img: "/1.jpg", name: "Mathias Asseko", role: "Entrepreneur Digital", city: "Libreville" },
               { img: "/2.jpg", name: "Jardelle Oniane", role: "Influenceuse · Créatrice de contenu", city: "Port-Gentil" },
               { img: "/3.jpg", name: "Nephtalie Nalick", role: "Influenceur · Créateur de contenu", city: "Libreville" },
             ].map((t) => (

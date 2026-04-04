@@ -236,7 +236,7 @@ export default function HeroSection() {
             </div>
             <div>
               <p className="font-heading font-600 text-sm text-white">
-                {mode === "talent" ? "Delvane BKG" : "Studio Lumière — Recruteur"}
+                {mode === "talent" ? "Mathias Asseko" : "Studio Lumière — Recruteur"}
               </p>
               <p className="font-mono text-[0.6875rem] tracking-[0.04em]" style={{ color: "rgba(255,255,255,0.45)" }}>
                 {mode === "talent" ? "3 missions ce mois" : "12 talents cette semaine"}
