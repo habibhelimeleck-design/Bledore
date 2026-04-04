@@ -24,7 +24,7 @@ export default function MarqueeSection() {
         borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      <div className="flex whitespace-nowrap" style={{ animation: "marquee 28s linear infinite" }}>
+      <div className="flex whitespace-nowrap" style={{ animation: "marquee 28s linear infinite", willChange: "transform" }}>
         {track.map((item, i) => (
           <span
             key={i}

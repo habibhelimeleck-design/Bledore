@@ -79,11 +79,11 @@ export default function HeroSection() {
         />
         {/* Emerald glow orbs */}
         <div
-          className="absolute -top-32 -left-48 w-[600px] h-[600px] rounded-full opacity-35 pointer-events-none"
+          className="absolute -top-32 -left-48 w-[600px] h-[600px] rounded-full opacity-35 pointer-events-none hidden lg:block"
           style={{ background: "radial-gradient(circle, #0d6637 0%, transparent 70%)", filter: "blur(60px)" }}
         />
         <div
-          className="absolute bottom-0 right-1/3 w-[400px] h-[400px] rounded-full opacity-20 pointer-events-none"
+          className="absolute bottom-0 right-1/3 w-[400px] h-[400px] rounded-full opacity-20 pointer-events-none hidden lg:block"
           style={{ background: "radial-gradient(circle, #0d6637 0%, transparent 70%)", filter: "blur(60px)" }}
         />
       </div>
@@ -236,7 +236,7 @@ export default function HeroSection() {
             </div>
             <div>
               <p className="font-heading font-600 text-sm text-white">
-                {mode === "talent" ? "Amina K. — Actrice" : "Studio Lumière — Recruteur"}
+                {mode === "talent" ? "Delvane BKG" : "Studio Lumière — Recruteur"}
               </p>
               <p className="font-mono text-[0.6875rem] tracking-[0.04em]" style={{ color: "rgba(255,255,255,0.45)" }}>
                 {mode === "talent" ? "3 missions ce mois" : "12 talents cette semaine"}
