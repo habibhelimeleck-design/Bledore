@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -169,6 +169,43 @@ function TalentCard({ talent, index }: { talent: (typeof TALENTS)[0]; index: num
 
 export default function TalentsSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("Tous");
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll mobile carousel — pause on touch, resume after
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let paused = false;
+    let raf: number;
+
+    const tick = () => {
+      if (!paused) {
+        el.scrollLeft += 0.8;
+        // Seamless loop: when reaching halfway (2 copies), reset to start
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+
+    const pause = () => { paused = true; };
+    const resume = () => { paused = false; };
+
+    el.addEventListener("touchstart", pause, { passive: true });
+    el.addEventListener("touchend", resume, { passive: true });
+    el.addEventListener("touchcancel", resume, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("touchstart", pause);
+      el.removeEventListener("touchend", resume);
+      el.removeEventListener("touchcancel", resume);
+    };
+  }, []);
 
   const filtered =
     activeCategory === "Tous"
@@ -219,25 +256,20 @@ export default function TalentsSection() {
           </div>
         </AnimatedSection>
 
-        {/* Mobile — auto-scroll horizontal continu */}
-        <div className="sm:hidden overflow-hidden -mx-5">
-          <div
-            className="scroll-cards-track flex gap-4 px-5"
-            style={{
-              animation: "scroll-cards 42s linear infinite",
-              willChange: "transform",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
-              width: "max-content",
-            }}
-          >
-            {/* Triple duplication pour loop sans saut visible */}
-            {[...TALENTS, ...TALENTS, ...TALENTS].map((talent, i) => (
+        {/* Mobile — scroll natif (cliquable + auto-scroll via rAF) */}
+        <div
+          ref={scrollRef}
+          className="sm:hidden -mx-5"
+          style={{ overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          <div className="flex gap-4 px-5" style={{ width: "max-content" }}>
+            {/* Double duplication — reset scrollLeft à mi-chemin pour loop sans saut */}
+            {[...TALENTS, ...TALENTS].map((talent, i) => (
               <Link
                 key={i}
                 href={`/talents/${talent.id}`}
                 className="group relative flex flex-col overflow-hidden rounded-2xl shrink-0"
-                style={{ width: "72vw", transform: "translateZ(0)" }}
+                style={{ width: "72vw" }}
                 aria-label={`Voir le profil de ${talent.name}, ${talent.role}`}
               >
                 <div className="relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
@@ -248,11 +280,9 @@ export default function TalentsSection() {
                     priority={i < 6}
                     className="object-cover"
                     sizes="72vw"
-                    style={{ transform: "translateZ(0)" }}
                   />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(3,15,10,0.95) 0%, rgba(3,15,10,0.3) 45%, transparent 70%)" }} />
                   {talent.verified && (
-                    /* Solid bg au lieu de backdrop-blur (évite scintillement layer iOS) */
                     <div className="absolute top-3 left-3 flex items-center gap-1 rounded-full px-2.5 py-1" style={{ background: "rgba(10,40,22,0.85)", border: "1px solid rgba(38,208,124,0.25)" }}>
                       <Verified size={10} fill="#7de8b4" stroke="none" aria-hidden="true" />
                       <span className="font-mono text-[0.5625rem] tracking-[0.1em] uppercase text-em-300">Vérifié</span>
