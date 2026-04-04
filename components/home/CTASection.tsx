@@ -121,7 +121,12 @@ export default function CTASection() {
             </p>
           </AnimatedSection>
 
-          {/* Right — editorial image collage */}
+          {/* Mobile image — visible uniquement sur petit écran */}
+          <div className="block lg:hidden overflow-hidden rounded-2xl" style={{ aspectRatio: "16/9" }}>
+            <img src="/3.jpg" alt="" className="w-full h-full object-cover" />
+          </div>
+
+          {/* Right — editorial image collage (desktop only) */}
           <motion.div
             className="relative h-[500px] hidden lg:block"
             aria-hidden="true"

@@ -31,21 +31,25 @@ export default function PourquoiSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           {/* Visual — left */}
-          <AnimatedSection className="relative hidden lg:block">
-            {/* Big image */}
-            <div className="relative overflow-hidden" style={{ borderRadius: 20, aspectRatio: "3/4", maxHeight: 600 }}>
+          <AnimatedSection className="relative">
+            {/* Big image — aspect ratio adapté au mobile */}
+            <div
+              className="relative overflow-hidden"
+              style={{ borderRadius: 20, aspectRatio: "4/3", maxHeight: 600 }}
+            >
+              <div className="hidden lg:block absolute inset-0" style={{ aspectRatio: "3/4" }} />
               <Image
                 src="/2.jpg"
                 alt="Studio de casting E.Talent"
                 fill
                 className="object-cover"
-                sizes="50vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
 
-            {/* Small image — bottom left */}
+            {/* Small image — desktop seulement (évite débordement mobile) */}
             <div
-              className="absolute overflow-hidden"
+              className="absolute overflow-hidden hidden lg:block"
               style={{
                 bottom: "-2rem",
                 left: "-2rem",
@@ -64,9 +68,9 @@ export default function PourquoiSection() {
               />
             </div>
 
-            {/* Badge — top right */}
+            {/* Badge — desktop seulement (évite débordement mobile) */}
             <div
-              className="absolute"
+              className="absolute hidden lg:block"
               style={{
                 top: "2rem",
                 right: "-1.5rem",
@@ -108,7 +112,7 @@ export default function PourquoiSection() {
               </p>
             </AnimatedSection>
 
-            <StaggerContainer className="flex flex-col" style={{ gap: 0 }}>
+            <StaggerContainer className="flex flex-col">
               {FEATURES.map((f, i) => (
                 <StaggerItem key={i}>
                   <div

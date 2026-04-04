@@ -41,12 +41,9 @@ export default function FooterSection() {
     >
       <div className="container-xl">
         {/* Main grid */}
-        <div
-          className="grid gap-12 mb-16"
-          style={{ gridTemplateColumns: "2fr 1fr 1fr 1fr" }}
-        >
+        <div className="grid grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 lg:gap-12 mb-16">
           {/* Brand */}
-          <div className="col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="block w-fit mb-4">
               <span
                 style={{
