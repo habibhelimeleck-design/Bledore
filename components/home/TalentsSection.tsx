@@ -7,63 +7,63 @@ import Link from "next/link";
 import { Star, MapPin, ArrowRight, Verified } from "lucide-react";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 
-type Category = "Tous" | "Acteurs" | "Mannequins" | "Voix" | "Danseurs";
+type Category = "Tous" | "Photographie" | "Création de contenu" | "Acteurs" | "Mannequins" | "Voix";
 
-const CATEGORIES: Category[] = ["Tous", "Acteurs", "Mannequins", "Voix", "Danseurs"];
+const CATEGORIES: Category[] = ["Tous", "Photographie", "Création de contenu", "Acteurs", "Mannequins", "Voix"];
 
 const TALENTS = [
   {
     id: 1,
-    name: "Laeticia Mboumba",
-    role: "Actrice & Présentatrice",
+    name: "Delvane BKG",
+    role: "Photographe & Vidéaste",
     city: "Libreville",
     rating: 4.9,
     missions: 18,
     verified: true,
-    categories: ["Acteurs"],
+    categories: ["Photographie"],
     image: "/1.jpg",
     specialty: "Publicité, Cinéma",
   },
   {
     id: 2,
-    name: "Jean-Pierre Ndong",
-    role: "Mannequin & Influenceur",
-    city: "Port-Gentil",
+    name: "Jardel Oniane",
+    role: " Influenceur",
+    city: "Libreville",
     rating: 4.8,
     missions: 24,
     verified: true,
-    categories: ["Mannequins"],
+    categories: ["Création de contenu"],
     image: "/2.jpg",
     specialty: "Mode, Lifestyle",
   },
   {
     id: 3,
-    name: "Christelle Ondo",
-    role: "Comédienne",
+    name: "Nephtali Nalick",
+    role: "Créateur de contenu",
     city: "Libreville",
     rating: 4.7,
     missions: 12,
     verified: true,
     categories: ["Acteurs"],
     image: "/3.jpg",
-    specialty: "Théâtre, Web-séries",
+    specialty: "Création de contenu",
   },
   {
     id: 4,
-    name: "Sylvie Nzamba",
-    role: "Artiste vocale",
-    city: "Franceville",
+    name: "Mr Wils",
+    role: "Créateur de contenu",
+    city: "Libreville",
     rating: 5.0,
     missions: 9,
     verified: true,
     categories: ["Voix"],
     image: "/4.jpg",
-    specialty: "Jingles, Doublage",
+    specialty: "Création de contenu, Doublage",
   },
   {
     id: 5,
-    name: "Rodrigue Obiang",
-    role: "Mannequin Editorial",
+    name: "Diego Falandry",
+    role: "Créateur de contenu",
     city: "Libreville",
     rating: 4.9,
     missions: 31,
@@ -208,11 +208,10 @@ export default function TalentsSection() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 aria-pressed={activeCategory === cat}
-                className={`px-4 py-2 rounded-full text-sm font-500 transition-all duration-250 cursor-pointer focus-visible:outline-2 focus-visible:outline-em-400 ${
-                  activeCategory === cat
-                    ? "bg-em-400 text-ink"
-                    : "text-white/50 border border-white/15 hover:border-white/40 hover:text-white"
-                }`}
+                className={`px-4 py-2 rounded-full text-sm font-500 transition-all duration-250 cursor-pointer focus-visible:outline-2 focus-visible:outline-em-400 ${activeCategory === cat
+                  ? "bg-em-400 text-ink"
+                  : "text-white/50 border border-white/15 hover:border-white/40 hover:text-white"
+                  }`}
               >
                 {cat}
               </button>

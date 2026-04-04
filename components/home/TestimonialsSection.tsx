@@ -6,10 +6,10 @@ import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/
 
 const TESTIMONIALS = [
   {
-    name: "Amina K.",
-    role: "Actrice, Libreville",
+    name: "Mr Wils.",
+    role: "Création de contenu, Libreville",
     quote:
-      "Avant E.Talent, je cherchais des castings partout — réseaux sociaux, bouche-à-oreille... Maintenant, les opportunités viennent directement à moi. J'ai réalisé 8 missions en 3 mois !",
+      "Avant E.Talent, je cherchais des évènements à couvrir — réseaux sociaux, bouche-à-oreille... Maintenant, les opportunités viennent directement à moi. J'ai réalisé 8 missions en 3 mois !",
     rating: 5,
     image: "/1.jpg",
     missions: "18 missions",
