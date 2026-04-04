@@ -4,9 +4,19 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { initials, formatDate, storageUrl } from "@/lib/utils";
 import { MapPin, CheckCircle2, Globe, Phone, ChevronLeft, ImageIcon } from "lucide-react";
+import { STATIC_TALENTS } from "@/lib/data/talents";
 
 export default async function PublicTalentPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+
+  // ID numérique = talent statique de la homepage → page coquille
+  const numericId = Number(id);
+  if (!isNaN(numericId) && Number.isInteger(numericId)) {
+    const staticTalent = STATIC_TALENTS.find((t) => t.id === numericId);
+    if (!staticTalent) notFound();
+    return <TalentShell talent={staticTalent!} />;
+  }
+
   const supabase = await createClient();
 
   const { data: { user } } = await supabase.auth.getUser();
@@ -191,6 +201,157 @@ export default async function PublicTalentPage({ params }: { params: Promise<{ i
                 <p className="text-sand-500 text-sm">Aucune photo dans la galerie.</p>
               </div>
             )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Coquille pour les talents statiques de la homepage ──────────────────────
+import type { StaticTalent } from "@/lib/data/talents";
+
+function TalentShell({ talent }: { talent: StaticTalent }) {
+  return (
+    <div style={{ minHeight: "100vh", background: "#030f0a" }}>
+      {/* Nav */}
+      <div
+        style={{
+          position: "sticky", top: 0, zIndex: 50,
+          background: "rgba(3,15,10,0.92)", backdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+        }}
+      >
+        <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 1.25rem", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+            <span style={{ fontFamily: "var(--f-heading, 'Cormorant Garamond', serif)", fontSize: "1.125rem", fontWeight: 600, color: "#fff", letterSpacing: "-0.01em" }}>
+              E.<span style={{ color: "#26d07c" }}>Talent</span>
+            </span>
+          </Link>
+          <Link
+            href="/connexion"
+            style={{
+              fontFamily: "var(--f-mono, 'DM Mono', monospace)", fontSize: "0.6875rem",
+              letterSpacing: "0.12em", textTransform: "uppercase",
+              background: "#26d07c", color: "#030f0a", fontWeight: 500,
+              padding: "0.5rem 1.25rem", borderRadius: 9999, textDecoration: "none",
+            }}
+          >
+            Se connecter
+          </Link>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 900, margin: "0 auto", padding: "2.5rem 1.25rem" }}>
+        <Link
+          href="/"
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            fontFamily: "var(--f-mono, 'DM Mono', monospace)", fontSize: "0.6875rem",
+            letterSpacing: "0.12em", textTransform: "uppercase",
+            color: "rgba(255,255,255,0.35)", textDecoration: "none", marginBottom: "2rem",
+          }}
+        >
+          <ChevronLeft size={14} />
+          Retour
+        </Link>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
+          {/* Card identité */}
+          <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", flexWrap: "wrap" }}>
+            {/* Photo */}
+            <div style={{ width: 120, height: 160, borderRadius: 16, overflow: "hidden", flexShrink: 0, position: "relative", background: "#071a10" }}>
+              <Image
+                src={talent.image}
+                alt={talent.name}
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="120px"
+              />
+            </div>
+
+            {/* Infos */}
+            <div style={{ flex: 1, minWidth: 200 }}>
+              <span
+                style={{
+                  fontFamily: "var(--f-mono, 'DM Mono', monospace)", fontSize: "0.625rem",
+                  letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "#26d07c", display: "block", marginBottom: "0.5rem",
+                }}
+              >
+                Talent vérifié
+              </span>
+              <h1
+                style={{
+                  fontFamily: "var(--f-heading, 'Cormorant Garamond', serif)",
+                  fontSize: "clamp(1.75rem,4vw,2.5rem)", fontWeight: 600,
+                  color: "#fff", lineHeight: 1.1, letterSpacing: "-0.02em",
+                  margin: "0 0 0.375rem",
+                }}
+              >
+                {talent.name}
+              </h1>
+              <p style={{ fontFamily: "var(--f-body, 'DM Sans', sans-serif)", fontSize: "0.9375rem", color: "rgba(255,255,255,0.5)", margin: "0 0 0.75rem" }}>
+                {talent.role}
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <MapPin size={13} style={{ color: "rgba(255,255,255,0.3)" }} />
+                <span style={{ fontFamily: "var(--f-body, 'DM Sans', sans-serif)", fontSize: "0.8125rem", color: "rgba(255,255,255,0.4)" }}>
+                  {talent.city}
+                </span>
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "1rem" }}>
+                {talent.specialty.split(", ").map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontFamily: "var(--f-mono, 'DM Mono', monospace)", fontSize: "0.5625rem",
+                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      padding: "0.25rem 0.75rem", borderRadius: 9999,
+                      background: "rgba(38,208,124,0.12)", color: "#7de8b4",
+                      border: "1px solid rgba(38,208,124,0.2)",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bandeau "profil en construction" */}
+          <div
+            style={{
+              borderRadius: 16, padding: "2rem",
+              background: "rgba(38,208,124,0.05)",
+              border: "1px solid rgba(38,208,124,0.15)",
+              textAlign: "center",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "var(--f-heading, 'Cormorant Garamond', serif)",
+                fontSize: "1.375rem", fontWeight: 600, color: "#fff",
+                letterSpacing: "-0.01em", marginBottom: "0.5rem",
+              }}
+            >
+              Profil en cours de construction
+            </p>
+            <p style={{ fontFamily: "var(--f-body, 'DM Sans', sans-serif)", fontSize: "0.875rem", color: "rgba(255,255,255,0.4)", marginBottom: "1.5rem" }}>
+              Ce talent rejoint bientôt la plateforme. Inscris-toi pour être notifié.
+            </p>
+            <Link
+              href="/inscription"
+              style={{
+                display: "inline-block",
+                fontFamily: "var(--f-mono, 'DM Mono', monospace)", fontSize: "0.6875rem",
+                letterSpacing: "0.12em", textTransform: "uppercase",
+                background: "#26d07c", color: "#030f0a", fontWeight: 500,
+                padding: "0.625rem 1.5rem", borderRadius: 9999, textDecoration: "none",
+              }}
+            >
+              Rejoindre E.Talent
+            </Link>
           </div>
         </div>
       </div>
