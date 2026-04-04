@@ -1,135 +1,156 @@
-"use client";
-
-import { Shield, Zap, Globe, Award, HeartHandshake, BarChart3 } from "lucide-react";
+import Image from "next/image";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 
-const RAISONS = [
+const FEATURES = [
   {
-    icon: Shield,
-    title: "Profils vérifiés",
-    description:
-      "Chaque talent et chaque producteur est vérifié par notre équipe. Zéro fraude, que de la confiance.",
-    color: "#10443e",
-    bg:    "#f0f7f6",
+    icon: "🛡️",
+    title: "Profils 100% vérifiés",
+    desc: "Chaque talent et recruteur est validé par notre équipe locale. Identité, compétences, réputation — zéro fraude.",
   },
   {
-    icon: Zap,
-    title: "Matching intelligent",
-    description:
-      "Notre algorithme analyse vos critères et vous propose les profils les plus pertinents en quelques secondes.",
-    color: "#32745c",
-    bg:    "#f0f9f7",
+    icon: "⚡",
+    title: "Matching instantané",
+    desc: "Notre algorithme connecte les bons talents aux bons recruteurs en quelques secondes. Pertinence maximale.",
   },
   {
-    icon: Globe,
-    title: "Réseau africain",
-    description:
-      "Gabon, Congo, Cameroun, Centrafrique… E.Talent s'étend à travers toute l'Afrique centrale.",
-    color: "#d4af87",
-    bg:    "#fdf7f0",
+    icon: "🔐",
+    title: "Paiement sécurisé XAF",
+    desc: "Escrow local en XAF. L'argent est bloqué à la mission et libéré à la validation. Votre travail est protégé.",
   },
   {
-    icon: Award,
-    title: "Paiement sécurisé",
-    description:
-      "Les paiements sont sécurisés et libérés uniquement à la fin de la mission. Votre argent est protégé.",
-    color: "#62a29a",
-    bg:    "#f0f7f6",
+    icon: "🌍",
+    title: "Réseau Afrique Centrale",
+    desc: "Gabon, Cameroun, Congo, Centrafrique — E.Talent s'étend sur toute la région. Votre talent, sans frontière.",
   },
-  {
-    icon: HeartHandshake,
-    title: "Support dédié",
-    description:
-      "Notre équipe gabonaise est disponible 7j/7 pour vous accompagner à chaque étape de vos projets.",
-    color: "#10443e",
-    bg:    "#f0f7f6",
-  },
-  {
-    icon: BarChart3,
-    title: "Statistiques & insights",
-    description:
-      "Suivez vos performances, vos candidatures et l'impact de vos castings avec un tableau de bord clair.",
-    color: "#32745c",
-    bg:    "#f0f9f7",
-  },
-];
-
-const STATS = [
-  { value: "2 400+", label: "Talents inscrits",    sublabel: "et en croissance" },
-  { value: "340+",   label: "Missions réalisées",  sublabel: "cette année" },
-  { value: "120+",   label: "Producteurs actifs",  sublabel: "au Gabon & Afrique" },
-  { value: "98%",    label: "Satisfaction client", sublabel: "selon nos enquêtes" },
 ];
 
 export default function PourquoiSection() {
   return (
-    <section id="pourquoi" className="section-padding" style={{ background: "#071a10", color: "#ffffff" }}>
+    <section id="pourquoi" className="overflow-hidden" style={{ padding: "var(--sec-pad, 6rem) 0", background: "#071a10" }}>
       <div className="container-xl">
-        {/* Header */}
-        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-mono text-[0.6875rem] tracking-[0.2em] uppercase mb-6 block" style={{ color: "#26d07c" }}>Pourquoi E.Talent</span>
-          <h2 className="font-heading font-600 leading-[1.0] tracking-[-0.02em] text-white mb-5" style={{ fontSize: "clamp(2.25rem,4vw,4rem)" }}>
-            La plateforme conçue <em style={{ fontStyle: "italic", color: "#26d07c" }}>pour l'Afrique</em>
-          </h2>
-          <p className="font-body font-300 text-[1rem] leading-[1.75]" style={{ color: "rgba(255,255,255,0.5)", maxWidth: "480px", margin: "0 auto" }}>
-            E.Talent n'est pas un copier-coller d'une plateforme occidentale. C'est une solution
-            pensée pour les réalités, les besoins et les ambitions des talents africains.
-          </p>
-        </AnimatedSection>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-        {/* Cards Grid */}
-        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-          {RAISONS.map((raison, i) => {
-            const Icon = raison.icon;
-            return (
-              <StaggerItem key={i}>
-                <div className="group flex flex-col gap-4 p-7 rounded-2xl bg-white/8 backdrop-blur-sm border border-white/10 hover:bg-white/14 hover:border-white/20 transition-all duration-350 cursor-default">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: raison.bg }}
-                  >
-                    <Icon
-                      size={22}
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                      style={{ color: raison.color }}
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-700 text-base text-white mb-2">
-                      {raison.title}
-                    </h3>
-                    <p className="font-body text-body-sm text-forest-200 leading-relaxed">
-                      {raison.description}
-                    </p>
-                  </div>
-                </div>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
+          {/* Visual — left */}
+          <AnimatedSection className="relative hidden lg:block">
+            {/* Big image */}
+            <div className="relative overflow-hidden" style={{ borderRadius: 20, aspectRatio: "3/4", maxHeight: 600 }}>
+              <Image
+                src="/2.jpg"
+                alt="Studio de casting E.Talent"
+                fill
+                className="object-cover"
+                sizes="50vw"
+              />
+            </div>
 
-        {/* Stats Bar */}
-        <AnimatedSection>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10">
-            {STATS.map((stat, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center justify-center gap-1.5 py-10 px-6 text-center bg-white/5 hover:bg-white/10 transition-colors duration-250"
-              >
-                <span className="font-heading font-800 text-[clamp(2rem,4vw,3rem)] text-white leading-none">
-                  {stat.value}
-                </span>
-                <span className="font-heading font-600 text-sm text-forest-200">
-                  {stat.label}
-                </span>
-                <span className="font-body text-xs text-forest-300/70">
-                  {stat.sublabel}
-                </span>
+            {/* Small image — bottom left */}
+            <div
+              className="absolute overflow-hidden"
+              style={{
+                bottom: "-2rem",
+                left: "-2rem",
+                width: 200,
+                height: 250,
+                borderRadius: 14,
+                border: "4px solid #071a10",
+              }}
+            >
+              <Image
+                src="/6.jpg"
+                alt=""
+                fill
+                className="object-cover"
+                sizes="200px"
+              />
+            </div>
+
+            {/* Badge — top right */}
+            <div
+              className="absolute"
+              style={{
+                top: "2rem",
+                right: "-1.5rem",
+                background: "rgba(255,255,255,0.06)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: 14,
+                padding: "1.25rem",
+                minWidth: 180,
+              }}
+            >
+              <div style={{ color: "#d4af87", fontSize: "1rem", letterSpacing: "0.1em", marginBottom: "0.5rem" }}>
+                ★★★★★
               </div>
-            ))}
+              <strong style={{ fontFamily: "var(--f-heading, 'Cormorant Garamond', serif)", fontSize: "1.375rem", color: "#ffffff", fontWeight: 600 }}>
+                4.9 / 5
+              </strong>
+              <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.45)", fontFamily: "var(--f-mono, 'DM Mono', monospace)", letterSpacing: "0.06em", marginTop: "0.25rem" }}>
+                Note moyenne globale
+              </p>
+            </div>
+          </AnimatedSection>
+
+          {/* Features — right */}
+          <div>
+            <AnimatedSection>
+              <span className="font-mono text-[0.6875rem] tracking-[0.2em] uppercase mb-6 block" style={{ color: "#26d07c" }}>
+                Pourquoi nous
+              </span>
+              <h2
+                className="font-heading font-600 text-white mb-5"
+                style={{ fontSize: "clamp(2.5rem,4.5vw,4rem)", lineHeight: 1.0, letterSpacing: "-0.02em" }}
+              >
+                Fait pour<br />
+                <em style={{ fontStyle: "italic", color: "#26d07c" }}>le Gabon.</em>
+              </h2>
+              <p className="font-body font-300" style={{ fontSize: "1rem", lineHeight: 1.75, color: "rgba(255,255,255,0.45)", maxWidth: 440, marginBottom: "3rem" }}>
+                E.Talent n'est pas une plateforme importée. C'est une solution pensée pour les réalités gabonaises et africaines.
+              </p>
+            </AnimatedSection>
+
+            <StaggerContainer className="flex flex-col" style={{ gap: 0 }}>
+              {FEATURES.map((f, i) => (
+                <StaggerItem key={i}>
+                  <div
+                    className="group grid items-start gap-5"
+                    style={{
+                      gridTemplateColumns: "48px 1fr",
+                      paddingBottom: i < FEATURES.length - 1 ? "2.5rem" : 0,
+                      marginBottom: i < FEATURES.length - 1 ? "2.5rem" : 0,
+                      borderBottom: i < FEATURES.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                    }}
+                  >
+                    {/* Icon */}
+                    <div
+                      className="flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
+                      style={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: 12,
+                        background: "rgba(38,208,124,0.08)",
+                        border: "1px solid rgba(38,208,124,0.12)",
+                        fontSize: "1.125rem",
+                      }}
+                    >
+                      {f.icon}
+                    </div>
+
+                    {/* Text */}
+                    <div>
+                      <h3 className="font-heading font-600 text-white mb-2" style={{ fontSize: "1.25rem", letterSpacing: "-0.01em" }}>
+                        {f.title}
+                      </h3>
+                      <p className="font-body font-300" style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7 }}>
+                        {f.desc}
+                      </p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
           </div>
-        </AnimatedSection>
+
+        </div>
       </div>
     </section>
   );
