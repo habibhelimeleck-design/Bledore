@@ -129,12 +129,12 @@ export default async function TalentsPage() {
                       >
                         {talent.full_name}
                       </h2>
-                      {talent.specialty && (
+                      {typeof talent.specialty === "string" && talent.specialty && (
                         <p
                           className="font-body text-[0.75rem] font-300 truncate"
                           style={{ color: "rgba(255,255,255,0.5)" }}
                         >
-                          {String(talent.specialty)}
+                          {talent.specialty}
                         </p>
                       )}
                       {talent.city && (
