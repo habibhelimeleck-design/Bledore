@@ -219,10 +219,58 @@ export default function TalentsSection() {
           </div>
         </AnimatedSection>
 
-        {/* Grid */}
+        {/* Mobile — auto-scroll horizontal continu */}
+        <div className="sm:hidden overflow-hidden -mx-5">
+          <div
+            className="flex gap-4 px-5"
+            style={{
+              animation: "scroll-cards 30s linear infinite",
+              willChange: "transform",
+              width: "max-content",
+            }}
+          >
+            {[...filtered, ...filtered].map((talent, i) => (
+              <Link
+                key={i}
+                href={`/talents/${talent.id}`}
+                className="group relative flex flex-col overflow-hidden rounded-2xl shrink-0"
+                style={{ width: "72vw" }}
+                aria-label={`Voir le profil de ${talent.name}, ${talent.role}`}
+              >
+                <div className="relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
+                  <Image
+                    src={talent.image}
+                    alt={`Portrait de ${talent.name}`}
+                    fill
+                    className="object-cover"
+                    sizes="72vw"
+                  />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(3,15,10,0.95) 0%, rgba(3,15,10,0.3) 45%, transparent 70%)" }} />
+                  {talent.verified && (
+                    <div className="absolute top-3 left-3 flex items-center gap-1 backdrop-blur-sm rounded-full px-2.5 py-1" style={{ background: "rgba(38,208,124,0.15)", border: "1px solid rgba(38,208,124,0.2)" }}>
+                      <Verified size={10} fill="#7de8b4" stroke="none" aria-hidden="true" />
+                      <span className="font-mono text-[0.5625rem] tracking-[0.1em] uppercase text-em-300">Vérifié</span>
+                    </div>
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 className="font-heading font-600 text-[1.125rem] text-white leading-[1.2] tracking-[-0.01em] mb-0.5">{talent.name}</h3>
+                    <p className="font-body text-[0.8125rem] font-300" style={{ color: "rgba(255,255,255,0.55)" }}>{talent.role}</p>
+                    <div className="flex items-center gap-1.5 mt-1.5">
+                      <Star size={12} fill="#d4a843" stroke="none" aria-hidden="true" />
+                      <span className="font-mono text-[0.75rem] text-gold-DEFAULT">{talent.rating}</span>
+                      <span className="font-body text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>· {talent.city}</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop — grid filtrable */}
         <motion.div
           layout
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((talent, i) => (

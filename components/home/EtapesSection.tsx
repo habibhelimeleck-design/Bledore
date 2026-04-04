@@ -56,8 +56,36 @@ export default function EtapesSection() {
           </p>
         </AnimatedSection>
 
-        {/* Steps Grid */}
-        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Steps — mobile horizontal snap scroll */}
+        <div
+          className="flex sm:hidden overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-5 px-5"
+          style={{ scrollbarWidth: "none" } as React.CSSProperties}
+        >
+          {ETAPES.map((etape, i) => {
+            const Icon = etape.icon;
+            return (
+              <div key={i} className="snap-start shrink-0 w-[80vw]">
+                <div className="p-6 h-full flex flex-col gap-5 rounded-2xl bg-white" style={{ border: "1px solid #e8e6df" }}>
+                  <div className="flex items-start justify-between">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${etape.accent}15` }}>
+                      <Icon size={22} strokeWidth={1.75} aria-hidden="true" style={{ color: etape.accent }} />
+                    </div>
+                    <span className="font-heading font-300 text-5xl leading-none select-none tracking-[-0.03em]" style={{ color: "#e8e6df" }}>
+                      {etape.number}
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <h3 className="font-heading font-600 text-[1.5rem] text-ink leading-snug tracking-[-0.01em]">{etape.title}</h3>
+                    <p className="font-body font-300 text-[0.9375rem] leading-[1.7]" style={{ color: "#3a3832" }}>{etape.description}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Steps — tablet/desktop grid */}
+        <StaggerContainer className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {ETAPES.map((etape, i) => {
             const Icon = etape.icon;
             return (

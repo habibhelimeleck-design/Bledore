@@ -468,3 +468,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 
 /* ─── Marquee animation ─────────────────────────────────────── */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─── Horizontal cards auto-scroll (mobile talents) ─────────── */
+@keyframes scroll-cards { from { transform: translateX(0); } to { transform: translateX(-50%); } }

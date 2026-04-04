@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { MapPin, Clock, Banknote, ArrowRight } from "lucide-react";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
@@ -64,7 +65,66 @@ export default async function MissionsSection() {
             Aucune mission disponible pour le moment.
           </div>
         ) : (
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <>
+            {/* Mobile — snap scroll horizontal */}
+            <div
+              className="flex sm:hidden overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-5 px-5"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as CSSProperties}
+            >
+              {missions.map((mission: any) => {
+                const producer = (mission.profiles as any)?.producer_accounts;
+                const brandName = producer?.company_name ?? (mission.profiles as any)?.full_name ?? "Recruteur";
+                const budget = mission.budget_min && mission.budget_max
+                  ? `${formatXAF(mission.budget_min)} – ${formatXAF(mission.budget_max)}`
+                  : mission.budget_min ? formatXAF(mission.budget_min)
+                  : "Budget à négocier";
+                const locationLabel = mission.is_remote ? "Télétravail possible" : (mission.location ?? "Gabon");
+                const deadline = daysLeft(mission.deadline);
+                const isUrgent = mission.deadline
+                  ? Math.ceil((new Date(mission.deadline).getTime() - Date.now()) / 86_400_000) <= 3
+                  : false;
+                return (
+                  <Link
+                    key={mission.id}
+                    href={`/missions/${mission.id}`}
+                    className="snap-start shrink-0 flex flex-col gap-4 p-5 rounded-2xl bg-white"
+                    style={{ width: "80vw", border: "1px solid #e8e6df" }}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className={`font-mono text-[0.5625rem] tracking-[0.1em] uppercase px-2.5 py-1 rounded-full ${CATEGORY_COLORS[mission.category] ?? "bg-gray-50 text-gray-600"}`}>
+                          {mission.category}
+                        </span>
+                        {isUrgent && (
+                          <span className="font-mono text-[0.5625rem] tracking-[0.1em] uppercase px-2.5 py-1 rounded-full" style={{ background: "#fff4e6", color: "#c45c00", border: "1px solid #ffd8a8" }}>Urgent</span>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-600 text-[1.0625rem] text-ink leading-[1.3] tracking-[-0.01em]">{mission.title}</h3>
+                      <p className="font-body text-[0.8125rem] font-300 mt-1" style={{ color: "#9a9890" }}>{brandName}</p>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex items-center gap-1.5" style={{ color: "#9a9890" }}>
+                        <MapPin size={12} aria-hidden="true" />
+                        <span className="font-mono text-[0.6875rem] tracking-[0.04em]">{locationLabel}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5" style={{ color: "#0d6637" }}>
+                        <Banknote size={12} aria-hidden="true" />
+                        <span className="font-mono text-[0.6875rem] tracking-[0.04em]">{budget}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5" style={{ color: "#9a9890" }}>
+                        <Clock size={12} aria-hidden="true" />
+                        <span className="font-body text-xs">{deadline}</span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Desktop — grid */}
+          <StaggerContainer className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {missions.map((mission: any) => {
               const producer = (mission.profiles as any)?.producer_accounts;
               const brandName = producer?.company_name ?? (mission.profiles as any)?.full_name ?? "Recruteur";
@@ -146,6 +206,7 @@ export default async function MissionsSection() {
               );
             })}
           </StaggerContainer>
+          </>
         )}
 
         {/* Bottom CTA */}
