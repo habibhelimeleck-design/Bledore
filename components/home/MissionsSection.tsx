@@ -15,5 +15,5 @@ export default async function MissionsSection() {
     .order("created_at", { ascending: false })
     .limit(6);
 
-  return <MissionsClient missions={(missions as Mission[]) ?? []} />;
+  return <MissionsClient missions={((missions ?? []) as unknown as Mission[])} />;
 }
