@@ -75,6 +75,7 @@ create table public.profiles (
   height_cm       smallint,
   languages       text[],     -- ex: ['fr','fang','myene']
   skills          text[],     -- ex: ['danse','acting','chant']
+  socials         jsonb,                        -- réseaux sociaux (TalentSocials)
   visibility      public.profile_visibility not null default 'producers_only',
   is_available    boolean     not null default true,
 

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Loader2, Camera, Check, Instagram, Youtube, Facebook, Twitter } from "lucide-react";
+import { Loader2, Camera, Check, Instagram, Youtube, Facebook, Twitter, Trash2, AlertTriangle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { GABON_CITIES, TALENT_SKILLS, GABON_LANGUAGES, initials } from "@/lib/utils";
 import type { Profile, TalentSocials } from "@/lib/types/database";
@@ -19,16 +20,21 @@ const SOCIAL_PLATFORMS: { key: keyof TalentSocials; label: string; placeholder: 
 
 export default function FaceProfilPage() {
   const supabase  = createClient();
+  const router    = useRouter();
   const fileRef   = useRef<HTMLInputElement>(null);
 
-  const [profile,  setProfile]  = useState<Profile | null>(null);
-  const [form,     setForm]     = useState<Partial<Profile>>({});
-  const [socials,  setSocials]  = useState<TalentSocials>({});
-  const [loading,  setLoading]  = useState(true);
-  const [saving,   setSaving]   = useState(false);
-  const [saved,    setSaved]    = useState(false);
-  const [uploading,setUploading]= useState(false);
-  const [error,    setError]    = useState<string | null>(null);
+  const [profile,       setProfile]       = useState<Profile | null>(null);
+  const [form,          setForm]          = useState<Partial<Profile>>({});
+  const [socials,       setSocials]       = useState<TalentSocials>({});
+  const [loading,       setLoading]       = useState(true);
+  const [saving,        setSaving]        = useState(false);
+  const [saved,         setSaved]         = useState(false);
+  const [uploading,     setUploading]     = useState(false);
+  const [error,         setError]         = useState<string | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteConfirm,   setDeleteConfirm]   = useState("");
+  const [deleting,        setDeleting]        = useState(false);
+  const [deleteError,     setDeleteError]     = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -95,6 +101,22 @@ export default function FaceProfilPage() {
     setSaving(false);
     if (err) { setError(err.message); }
     else { setSaved(true); setTimeout(() => setSaved(false), 2500); }
+  }
+
+  async function handleDeleteAccount() {
+    setDeleting(true);
+    setDeleteError(null);
+
+    const res = await fetch("/api/account/delete", { method: "DELETE" });
+    if (!res.ok) {
+      const data = await res.json();
+      setDeleteError(data.error ?? "Erreur lors de la suppression.");
+      setDeleting(false);
+      return;
+    }
+
+    await supabase.auth.signOut();
+    router.push("/");
   }
 
   function toggleArray(field: "skills" | "languages", val: string) {
@@ -352,6 +374,82 @@ export default function FaceProfilPage() {
           {saving ? "Sauvegarde…" : saved ? "Sauvegardé !" : "Enregistrer les modifications"}
         </button>
       </form>
+
+      {/* Zone de danger */}
+      <div className="mt-12 mb-8">
+        <p className="text-sand-400 font-mono text-xs uppercase tracking-widest mb-3">Zone de danger</p>
+        <div className="card p-6 border border-red-200 bg-red-50/40">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+              <Trash2 size={18} className="text-red-600" />
+            </div>
+            <div className="flex-1">
+              <p className="font-semibold text-ink text-sm mb-0.5">Supprimer mon compte</p>
+              <p className="text-sand-500 text-xs">Cette action est irréversible. Toutes tes données (profil, candidatures, galerie) seront définitivement supprimées.</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => { setShowDeleteModal(true); setDeleteConfirm(""); setDeleteError(null); }}
+              className="btn btn-sm flex-shrink-0 border border-red-300 text-red-600 hover:bg-red-100 transition-colors rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-wider"
+            >
+              Supprimer
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal confirmation suppression */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(3,15,10,0.75)", backdropFilter: "blur(6px)" }}>
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+                <AlertTriangle size={20} className="text-red-600" />
+              </div>
+              <h2 className="font-heading text-xl font-semibold text-ink">Supprimer mon compte</h2>
+            </div>
+
+            <p className="text-sand-600 text-sm mb-4">
+              Cette action est <strong>irréversible</strong>. Ton profil, tes candidatures et ta galerie seront supprimés définitivement.
+            </p>
+
+            <p className="text-sand-600 text-sm mb-2">
+              Tape <span className="font-mono font-semibold text-ink">SUPPRIMER</span> pour confirmer :
+            </p>
+            <input
+              className="form-input mb-4"
+              placeholder="SUPPRIMER"
+              value={deleteConfirm}
+              onChange={(e) => setDeleteConfirm(e.target.value)}
+              autoFocus
+            />
+
+            {deleteError && (
+              <p className="text-red-600 text-sm mb-3">{deleteError}</p>
+            )}
+
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => setShowDeleteModal(false)}
+                disabled={deleting}
+                className="flex-1 btn border border-[var(--border)] text-sand-600 hover:bg-sand-50 rounded-full text-sm"
+              >
+                Annuler
+              </button>
+              <button
+                type="button"
+                onClick={handleDeleteAccount}
+                disabled={deleteConfirm !== "SUPPRIMER" || deleting}
+                className="flex-1 btn bg-red-600 text-white hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-full text-sm transition-colors"
+              >
+                {deleting ? <Loader2 size={15} className="animate-spin mx-auto" /> : "Supprimer définitivement"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
