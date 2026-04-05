@@ -244,7 +244,9 @@ function InfiniteCarousel({ items }: { items: TalentCardData[] }) {
         scrollbarWidth: "none",
         msOverflowStyle: "none",
         cursor: "grab",
-      }}
+        touchAction: "pan-x",
+        WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
+      } as React.CSSProperties}
       onMouseEnter={pause}
       onMouseLeave={resume}
       onTouchStart={pause}
@@ -302,8 +304,8 @@ export default function TalentsClient({ talents }: { talents: TalentCardData[] }
   return (
     <section
       id="talents"
-      className="section-padding overflow-hidden relative"
-      style={{ background: "#030f0a" }}
+      className="section-padding relative"
+      style={{ background: "#030f0a", contain: "paint" }}
     >
       {/* Fang texture */}
       <div
