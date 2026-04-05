@@ -137,6 +137,22 @@ body {
   backdrop-filter: blur(12px);
 }
 
+/* ─── Marquee / ticker ──────────────────────────────────────── */
+@keyframes ecosystemScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: ecosystemScroll 24s linear infinite;
+  /* Force GPU layer — prevents iOS repaint flicker */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 /* ─── Button styles ─────────────────────────────────────────── */
 .btn {
   display: inline-flex;

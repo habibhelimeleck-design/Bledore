@@ -282,14 +282,6 @@ export default function TalentsSection() {
       className="section-padding overflow-hidden relative"
       style={{ background: "#030f0a" }}
     >
-      {/* Keyframes for ecosystem marquee */}
-      <style>{`
-        @keyframes ecosystemScroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-      `}</style>
-
       {/* Fang texture background */}
       <div
         aria-hidden="true"
@@ -335,13 +327,7 @@ export default function TalentsSection() {
           className="mb-10 overflow-hidden border-b"
           style={{ borderColor: "rgba(255,255,255,0.05)", paddingBottom: "1.5rem" }}
         >
-          <div
-            style={{
-              display: "inline-flex",
-              whiteSpace: "nowrap",
-              animation: "ecosystemScroll 24s linear infinite",
-            }}
-          >
+          <div className="marquee-track">
             {[0, 1].map((i) => (
               <span
                 key={i}
