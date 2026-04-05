@@ -2,10 +2,20 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Loader2, Camera, Check } from "lucide-react";
+import { Loader2, Camera, Check, Instagram, Youtube, Facebook, Twitter } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { GABON_CITIES, TALENT_SKILLS, GABON_LANGUAGES, initials } from "@/lib/utils";
-import type { Profile } from "@/lib/types/database";
+import type { Profile, TalentSocials } from "@/lib/types/database";
+
+const SOCIAL_PLATFORMS: { key: keyof TalentSocials; label: string; placeholder: string; icon: React.ReactNode; followerLabel: string }[] = [
+  { key: "instagram", label: "Instagram", placeholder: "https://instagram.com/tonprofil", icon: <Instagram size={16} />, followerLabel: "Abonnés" },
+  { key: "tiktok",    label: "TikTok",    placeholder: "https://tiktok.com/@tonprofil",  icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+    ), followerLabel: "Abonnés" },
+  { key: "youtube",   label: "YouTube",   placeholder: "https://youtube.com/@tachaîne",  icon: <Youtube size={16} />,   followerLabel: "Abonnés" },
+  { key: "facebook",  label: "Facebook",  placeholder: "https://facebook.com/tapage",    icon: <Facebook size={16} />,  followerLabel: "Abonnés" },
+  { key: "twitter",   label: "Twitter / X", placeholder: "https://x.com/tonprofil",     icon: <Twitter size={16} />,   followerLabel: "Abonnés" },
+];
 
 export default function FaceProfilPage() {
   const supabase  = createClient();
@@ -13,6 +23,7 @@ export default function FaceProfilPage() {
 
   const [profile,  setProfile]  = useState<Profile | null>(null);
   const [form,     setForm]     = useState<Partial<Profile>>({});
+  const [socials,  setSocials]  = useState<TalentSocials>({});
   const [loading,  setLoading]  = useState(true);
   const [saving,   setSaving]   = useState(false);
   const [saved,    setSaved]    = useState(false);
@@ -24,7 +35,11 @@ export default function FaceProfilPage() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
       const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-      if (data) { setProfile(data); setForm(data); }
+      if (data) {
+        setProfile(data);
+        setForm(data);
+        setSocials((data.socials as TalentSocials | null) ?? {});
+      }
       setLoading(false);
     })();
   }, []);
@@ -55,6 +70,12 @@ export default function FaceProfilPage() {
     if (!profile) return;
     setSaving(true); setError(null);
 
+    /* Nettoyer les réseaux vides avant sauvegarde */
+    const cleanedSocials: TalentSocials = {};
+    for (const [key, val] of Object.entries(socials) as [keyof TalentSocials, { url?: string; followers?: number; subscribers?: number }][]) {
+      if (val?.url?.trim()) cleanedSocials[key] = val as never;
+    }
+
     const { error: err } = await supabase.from("profiles").update({
       full_name:   form.full_name,
       username:    form.username || null,
@@ -66,6 +87,7 @@ export default function FaceProfilPage() {
       birth_date:  form.birth_date || null,
       skills:      (form.skills as string[] | null)?.length ? form.skills : null,
       languages:   (form.languages as string[] | null)?.length ? form.languages : null,
+      socials:     Object.keys(cleanedSocials).length ? cleanedSocials : null,
       visibility:  form.visibility,
       is_available:form.is_available,
     }).eq("id", profile.id);
@@ -231,6 +253,55 @@ export default function FaceProfilPage() {
                     : "bg-white text-sand-600 border-[var(--border)] hover:border-em-400"}`}>
                   {lang}
                 </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Réseaux sociaux */}
+        <div className="card p-6">
+          <h2 className="font-semibold text-ink mb-1 text-sm uppercase tracking-wider">Réseaux sociaux</h2>
+          <p className="text-sand-400 text-xs mb-5">Renseigne tes réseaux pour qu'ils apparaissent sur ton profil public.</p>
+          <div className="flex flex-col gap-5">
+            {SOCIAL_PLATFORMS.map(({ key, label, placeholder, icon, followerLabel }) => {
+              const entry = (socials[key] ?? {}) as { url?: string; followers?: number; subscribers?: number };
+              const countKey = key === "youtube" ? "subscribers" : "followers";
+              return (
+                <div key={key}>
+                  <label className="form-label flex items-center gap-1.5">
+                    <span className="text-sand-400">{icon}</span>
+                    {label}
+                  </label>
+                  <div className="grid grid-cols-[1fr_140px] gap-3">
+                    <input
+                      className="form-input"
+                      type="url"
+                      placeholder={placeholder}
+                      value={entry.url ?? ""}
+                      onChange={(e) =>
+                        setSocials((prev) => ({
+                          ...prev,
+                          [key]: { ...entry, url: e.target.value },
+                        }))
+                      }
+                    />
+                    <div className="relative">
+                      <input
+                        className="form-input pr-2"
+                        type="number"
+                        min={0}
+                        placeholder={followerLabel}
+                        value={(entry[countKey as keyof typeof entry] as number | undefined) ?? ""}
+                        onChange={(e) =>
+                          setSocials((prev) => ({
+                            ...prev,
+                            [key]: { ...entry, [countKey]: Number(e.target.value) || 0 },
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
               );
             })}
           </div>

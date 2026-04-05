@@ -5,6 +5,14 @@ export type ApplicationStatus = "pending" | "viewed" | "shortlisted" | "accepted
 export type MediaType         = "photo" | "video" | "audio" | "document";
 export type ModerationStatus  = "pending" | "approved" | "rejected";
 
+export interface TalentSocials {
+  instagram?: { url: string; followers: number } | null;
+  tiktok?:    { url: string; followers: number } | null;
+  youtube?:   { url: string; subscribers: number } | null;
+  facebook?:  { url: string; followers: number } | null;
+  twitter?:   { url: string; followers: number } | null;
+}
+
 export interface Profile {
   [key: string]: unknown;
   id:            string;
@@ -21,6 +29,7 @@ export interface Profile {
   height_cm:     number | null;
   languages:     string[] | null;
   skills:        string[] | null;
+  socials:       TalentSocials | null;
   visibility:    ProfileVisibility;
   is_available:  boolean;
   created_at:    string;
