@@ -157,7 +157,7 @@ comment on table public.missions is
 create table public.applications (
   id              uuid        primary key default uuid_generate_v4(),
   mission_id      uuid        not null references public.missions(id) on delete cascade,
-  face_id         uuid        not null references public.profiles(id) on delete cascade,
+  talent_id       uuid        not null references public.profiles(id) on delete cascade,
 
   cover_letter    text,
   status          public.application_status not null default 'pending',
@@ -166,8 +166,8 @@ create table public.applications (
   created_at      timestamptz not null default now(),
   updated_at      timestamptz not null default now(),
 
-  -- Une face ne peut candidater qu'une seule fois par mission
-  unique (mission_id, face_id)
+  -- Un talent ne peut candidater qu'une seule fois par mission
+  unique (mission_id, talent_id)
 );
 
 comment on table public.applications is
@@ -179,7 +179,7 @@ comment on table public.applications is
 -- ---------------------------------------------------------------------------
 create table public.media_assets (
   id              uuid        primary key default uuid_generate_v4(),
-  face_id         uuid        not null references public.profiles(id) on delete cascade,
+  talent_id       uuid        not null references public.profiles(id) on delete cascade,
 
   media_type      public.media_type not null default 'photo',
   url             text        not null,
@@ -238,11 +238,11 @@ create index idx_missions_fulltext    on public.missions using gin(to_tsvector('
 
 -- applications
 create index idx_applications_mission on public.applications(mission_id);
-create index idx_applications_face    on public.applications(face_id);
+create index idx_applications_face    on public.applications(talent_id);
 create index idx_applications_status  on public.applications(status);
 
 -- media_assets
-create index idx_media_face           on public.media_assets(face_id);
+create index idx_media_face           on public.media_assets(talent_id);
 create index idx_media_type           on public.media_assets(media_type);
 create index idx_media_cover          on public.media_assets(is_cover) where is_cover = true;
 
@@ -450,22 +450,22 @@ create policy "missions_delete_own"
 -- 6.4  APPLICATIONS
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- SELECT : visible par la face concernée OU le producteur propriétaire de la mission
+-- SELECT : visible par le talent concerné OU le producteur propriétaire de la mission
 create policy "applications_select"
   on public.applications for select
   using (
-    auth.uid() = face_id
+    auth.uid() = talent_id
     or auth.uid() = (
       select producer_id from public.missions where id = mission_id
     )
   );
 
--- INSERT : une face ne peut candidater qu'avec son propre compte + mission published
+-- INSERT : un talent ne peut candidater qu'avec son propre compte + mission published
 create policy "applications_insert_face"
   on public.applications for insert
   with check (
-    auth.uid() = face_id
-    and public.current_user_role() = 'face'
+    auth.uid() = talent_id
+    and public.current_user_role() = 'talent'
     and exists (
       select 1 from public.missions
       where id = mission_id and status = 'published'
@@ -473,12 +473,12 @@ create policy "applications_insert_face"
   );
 
 -- UPDATE :
---   • La face peut modifier sa lettre de motivation (si pending)
+--   • Le talent peut modifier sa lettre de motivation (si pending)
 --   • Le producteur peut modifier le statut et sa note interne
 create policy "applications_update_face"
   on public.applications for update
-  using (auth.uid() = face_id)
-  with check (auth.uid() = face_id);
+  using (auth.uid() = talent_id)
+  with check (auth.uid() = talent_id);
 
 create policy "applications_update_producer"
   on public.applications for update
@@ -488,11 +488,11 @@ create policy "applications_update_producer"
     )
   );
 
--- DELETE : une face peut retirer sa propre candidature (si pending)
+-- DELETE : un talent peut retirer sa propre candidature (si pending)
 create policy "applications_delete_face"
   on public.applications for delete
   using (
-    auth.uid() = face_id
+    auth.uid() = talent_id
     and status = 'pending'
   );
 
@@ -501,39 +501,39 @@ create policy "applications_delete_face"
 -- 6.5  MEDIA_ASSETS
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- SELECT : visible selon la visibilité du profil de la face
+-- SELECT : visible selon la visibilité du profil du talent
 create policy "media_assets_select"
   on public.media_assets for select
   using (
-    auth.uid() = face_id
+    auth.uid() = talent_id
     or (
       auth.role() = 'authenticated'
       and exists (
         select 1 from public.profiles p
-        where p.id = face_id
+        where p.id = talent_id
           and p.visibility in ('public', 'producers_only')
       )
     )
   );
 
--- INSERT : la face insère uniquement ses propres médias
+-- INSERT : le talent insère uniquement ses propres médias
 create policy "media_assets_insert_own"
   on public.media_assets for insert
   with check (
-    auth.uid() = face_id
-    and public.current_user_role() = 'face'
+    auth.uid() = talent_id
+    and public.current_user_role() = 'talent'
   );
 
--- UPDATE : la face modifie uniquement ses propres médias
+-- UPDATE : le talent modifie uniquement ses propres médias
 create policy "media_assets_update_own"
   on public.media_assets for update
-  using (auth.uid() = face_id)
-  with check (auth.uid() = face_id);
+  using (auth.uid() = talent_id)
+  with check (auth.uid() = talent_id);
 
--- DELETE : la face supprime uniquement ses propres médias
+-- DELETE : le talent supprime uniquement ses propres médias
 create policy "media_assets_delete_own"
   on public.media_assets for delete
-  using (auth.uid() = face_id);
+  using (auth.uid() = talent_id);
 
 
 -- ─────────────────────────────────────────────────────────────────────────────
